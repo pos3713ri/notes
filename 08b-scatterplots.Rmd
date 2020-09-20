@@ -1,0 +1,107 @@
+# The Scatterplot
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width=3, fig.height=2, fig.align = "center",
+                      message=FALSE, warning=FALSE)
+doc_theme <- ggplot2::theme_bw()
+
+library(tidyverse)
+library(kableExtra)
+
+```
+
+The scatterplot is the most powerful tool in statistics. The following comes as close to any rote procedure that I would recommend following:
+
+**Always plot your data using a scatterplot.**
+
+For some combinations of unordered, qualitative variables with a large number of categories, the scatterplot might not offer useful information. However, the plot itself will not mislead the researcher. Therefore, *the scatterplot offers a safe, likely useful starting point for almost all data analysis*.
+
+## `geom_point()`
+
+To create scatterplots, we simply use `geom_point()` as the geometry combined with our same approach to data and aesthetics.
+
+Here's a simple example with hypothetical data.
+
+```{r fig.height=2, fig.width=3, message=FALSE, warning=FALSE}
+# create a fictional dataset with tribble()
+df <- tribble(
+  ~x,  ~ y,
+  1,   1,
+  2,   2, 
+  3,   6, 
+  1,   3,
+  2.5, 5)
+
+# quick look at this fictional data frame
+glimpse(df)
+
+# create scatterplot
+ggplot(df, aes(x = x, y = y)) + 
+  geom_point()
+```
+
+## Example: Gamson's Law
+
+Here's a more realistic example.
+
+```{r fig.height=2, fig.width=3}
+gamson_df <- read_rds("gamson.rds")
+
+glimpse(gamson_df)
+
+ggplot(gamson_df, aes(x = seat_share, y = portfolio_share)) + 
+  geom_point()
+```
+
+Because the data are so dense, especially in the lower-left corner of the plot, we might use alpha transparency to make the density easier to see.
+
+```{r fig.height=2, fig.width=3}
+ggplot(gamson_df, aes(x = seat_share, y = portfolio_share)) + 
+  geom_point(alpha = 0.3)
+```
+
+## Example: Gapminder
+
+For a dataset with more variables, we can represent a few other variables using aesthetics other than location in space.
+
+For this example, we use country-level data from the gapminder package. We haven't discussed this yet, but many R packages contain datasets that are useful as examples. In this case, we can load the `gapminder` dataset from the gapminder package using `data(gapminder, package = "gapminder")`. This is an alternative to downloading the dataset to your computer, uploading it to the project in RStudio Cloud, and reading it into R with, say, `read_csv()`.
+
+```{r fig.height=4, fig.width=6}
+# load gapminder dataset from gapminder package
+data(gapminder, package = "gapminder")
+
+glimpse(gapminder)
+
+ggplot(gapminder, aes(x = gdpPercap, 
+                      y = lifeExp,
+                      size = pop, 
+                      color = continent)) + 
+  geom_point(alpha = 0.3)
+```
+
+Because GDP per capita is skewed so heavily to the right, we might transform the x-axis from a linear scale (the default) to a log (base-10) scale.
+
+```{r fig.height=4, fig.width=6}
+ggplot(gapminder, aes(x = gdpPercap, 
+                      y = lifeExp,
+                      size = pop, 
+                      color = continent)) + 
+  geom_point(alpha = 0.3) + 
+  scale_x_log10()
+```
+
+
+```{exercise}
+Get the health dataset from the [data page](https://pos3713.github.io/data.html) and load it into R. Plot the variable `percent_uninsured` (the percent of each state's population without health insurance) along the horizontal axis and the variable `percent_favorable_aca` (the percent of each state with a favorable attitude toward Obamacare) along the vertical axis. Interpret and speculate about any pattern. I encourage you to represent other variables with other aesthetics.
+```
+
+```{exercise}
+Continuing the exercise above, label each point with the state's two-letter abbreviation. Experiment with the following strategies.
+
+1. `geom_text()` *instead of* `geom_point()`
+1. `geom_label()` *instead of* `geom_point()`
+1. `geom_text_repel()` in the ggrepel package *in addition to* `geom_point()`
+1. `geom_label_repel()` in the ggrepel package *in addition to* `geom_point()`
+
+Hint: Review the help files (e.g., `?geom_text()`) and the contained examples to understand how to use each geom. The variable `state_abbr` contains the two-letter abbreviation, so you'll need to include the aesthetic `label = state_abbr` in the `aes()` function.
+```

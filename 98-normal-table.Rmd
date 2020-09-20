@@ -1,0 +1,20 @@
+
+# (APPENDIX) Appendix {-} 
+
+# Appendix: A Normal Table
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r echo=FALSE, fig.height=6, fig.width=6, message=FALSE, warning=FALSE, result = "asis"}
+tibble(z = seq(0, 4.45, by = 0.05),
+       `*z*` = z, 
+       `% between *-z* and *z*` = scales::percent(pnorm(z) - pnorm(-z), accuracy = 0.01)) %>%
+  select(-z) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = "striped", full_width = FALSE, position = "center")
+```

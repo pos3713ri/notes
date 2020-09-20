@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Average and SD | Concepts and Computation: An Introduction to Political Methodology</title>
+  <meta name="description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to first-year PhD students in politial science." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Average and SD | Concepts and Computation: An Introduction to Political Methodology" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to first-year PhD students in politial science." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Average and SD | Concepts and Computation: An Introduction to Political Methodology" />
+  
+  <meta name="twitter:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to first-year PhD students in politial science." />
+  
+
+<meta name="author" content="Rob Lytle and Carlisle Rainey" />
+
+
+<meta name="date" content="2020-09-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="histograms.html"/>
+<link rel="next" href="average-and-sd-in-r.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script>
+    $(document).ready(function () {
+        process_solutions();
+    });
+    function process_solutions() {
+        $("div.section[id^='solution']").each(function(i) {
+        var soln_wrapper_id = "cvxr_ex_" + i;
+        var solution_id = $(this).attr('id');
+        var button = $("<button onclick=\"toggle_solution('" + soln_wrapper_id + "')\">Show/Hide</button>");
+        var new_div = $("<div id='" + soln_wrapper_id + "' class='solution' style='display: none;'></div>");
+        var h = $(this).first();
+        var others = $(this).children().slice(1);
+        $(others).each(function() {
+            $(this).appendTo($(new_div));
+        });
+        $(button).insertAfter($(h));
+        $(new_div).insertAfter($(button));
+        })
+    }
+    function toggle_solution(el_id) {
+      $("#" + el_id).toggle();
+    } 
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Concepts and Computation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
+<li class="chapter" data-level="2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html"><i class="fa fa-check"></i><b>2</b> Statistical Computing with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#r-as-a-calculator"><i class="fa fa-check"></i><b>2.1</b> R as a Calculator</a></li>
+<li class="chapter" data-level="2.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#importance"><i class="fa fa-check"></i><b>2.2.1</b> Importance</a></li>
+<li class="chapter" data-level="2.2.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#comments"><i class="fa fa-check"></i><b>2.2.2</b> Comments</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#object-oriented-programming"><i class="fa fa-check"></i><b>2.3</b> Object-Oriented Programming</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#scalars"><i class="fa fa-check"></i><b>2.3.1</b> Scalars</a></li>
+<li class="chapter" data-level="2.3.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#functions"><i class="fa fa-check"></i><b>2.3.2</b> Functions</a></li>
+<li class="chapter" data-level="2.3.3" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#vectors"><i class="fa fa-check"></i><b>2.3.3</b> Vectors</a></li>
+<li class="chapter" data-level="2.3.4" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#more-information"><i class="fa fa-check"></i><b>2.3.4</b> More Information</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#missing-values"><i class="fa fa-check"></i><b>2.4</b> Missing Values</a></li>
+<li class="chapter" data-level="2.5" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#logical-operators"><i class="fa fa-check"></i><b>2.5</b> Logical Operators</a></li>
+<li class="chapter" data-level="2.6" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#packages"><i class="fa fa-check"></i><b>2.6</b> Packages</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#installing-packages"><i class="fa fa-check"></i><b>2.6.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#loading-packages"><i class="fa fa-check"></i><b>2.6.2</b> Loading Packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html"><i class="fa fa-check"></i><b>3</b> Loading Data into R</a><ul>
+<li class="chapter" data-level="3.1" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#the-terms"><i class="fa fa-check"></i><b>3.1</b> The Terms</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#file-types"><i class="fa fa-check"></i><b>3.1.1</b> File Types</a></li>
+<li class="chapter" data-level="3.1.2" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#comma-separated-value-format-.csv"><i class="fa fa-check"></i><b>3.1.2</b> Comma-Separated Value Format (<code>.csv</code>)</a></li>
+<li class="chapter" data-level="3.1.3" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#the-working-directory"><i class="fa fa-check"></i><b>3.1.3</b> The Working Directory</a></li>
+<li class="chapter" data-level="3.1.4" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#the-path"><i class="fa fa-check"></i><b>3.1.4</b> The Path</a></li>
+<li class="chapter" data-level="3.1.5" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#determining-the-path"><i class="fa fa-check"></i><b>3.1.5</b> Determining the Path</a></li>
+<li class="chapter" data-level="3.1.6" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#rio"><i class="fa fa-check"></i><b>3.1.6</b> <code>rio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#data-frames"><i class="fa fa-check"></i><b>3.2</b> Data Frames</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#working-with-variables-in-data-frames"><i class="fa fa-check"></i><b>3.2.1</b> Working with Variables in Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#how-well-always-use-r"><i class="fa fa-check"></i><b>3.3</b> How We’ll Always Use R</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="histograms.html"><a href="histograms.html"><i class="fa fa-check"></i><b>4</b> Histograms</a><ul>
+<li class="chapter" data-level="4.1" data-path="histograms.html"><a href="histograms.html#nominate-data"><i class="fa fa-check"></i><b>4.1</b> NOMINATE Data</a></li>
+<li class="chapter" data-level="4.2" data-path="histograms.html"><a href="histograms.html#histograms-geom_histogram"><i class="fa fa-check"></i><b>4.2</b> Histograms: <code>geom_histogram()</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="histograms.html"><a href="histograms.html#the-three-critical-components"><i class="fa fa-check"></i><b>4.2.1</b> The Three Critical Components</a></li>
+<li class="chapter" data-level="4.2.2" data-path="histograms.html"><a href="histograms.html#drawing-a-histogram"><i class="fa fa-check"></i><b>4.2.2</b> Drawing a Histogram</a></li>
+<li class="chapter" data-level="4.2.3" data-path="histograms.html"><a href="histograms.html#but-geom_histogram-uses-counts"><i class="fa fa-check"></i><b>4.2.3</b> But <code>geom_histogram()</code> uses counts!</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="histograms.html"><a href="histograms.html#filtering-filter"><i class="fa fa-check"></i><b>4.3</b> Filtering: <code>filter()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="histograms.html"><a href="histograms.html#faceting-facet_wrap"><i class="fa fa-check"></i><b>4.4</b> Faceting: <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="histograms.html"><a href="histograms.html#density-plots-geom_density"><i class="fa fa-check"></i><b>4.5</b> Density Plots: <code>geom_density()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="histograms.html"><a href="histograms.html#color-and-fill"><i class="fa fa-check"></i><b>4.6</b> Color and Fill</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="histograms.html"><a href="histograms.html#color"><i class="fa fa-check"></i><b>4.6.1</b> Color</a></li>
+<li class="chapter" data-level="4.6.2" data-path="histograms.html"><a href="histograms.html#fill"><i class="fa fa-check"></i><b>4.6.2</b> Fill</a></li>
+<li class="chapter" data-level="4.6.3" data-path="histograms.html"><a href="histograms.html#alpha"><i class="fa fa-check"></i><b>4.6.3</b> Alpha</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="histograms.html"><a href="histograms.html#labels-labs"><i class="fa fa-check"></i><b>4.7</b> Labels: <code>labs()</code></a></li>
+<li class="chapter" data-level="4.8" data-path="histograms.html"><a href="histograms.html#themes-theme_bw-and-others"><i class="fa fa-check"></i><b>4.8</b> Themes: <code>theme_bw()</code> and Others</a></li>
+<li class="chapter" data-level="4.9" data-path="histograms.html"><a href="histograms.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.9</b> Putting It All Together</a></li>
+<li class="chapter" data-level="4.10" data-path="histograms.html"><a href="histograms.html#saving-plots-ggsave"><i class="fa fa-check"></i><b>4.10</b> Saving Plots: <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="average-and-sd.html"><a href="average-and-sd.html"><i class="fa fa-check"></i><b>5</b> Average and SD</a><ul>
+<li class="chapter" data-level="5.1" data-path="average-and-sd.html"><a href="average-and-sd.html#the-intuition"><i class="fa fa-check"></i><b>5.1</b> The Intuition</a></li>
+<li class="chapter" data-level="5.2" data-path="average-and-sd.html"><a href="average-and-sd.html#the-measures"><i class="fa fa-check"></i><b>5.2</b> The Measures</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="average-and-sd.html"><a href="average-and-sd.html#the-average"><i class="fa fa-check"></i><b>5.2.1</b> The Average</a></li>
+<li class="chapter" data-level="5.2.2" data-path="average-and-sd.html"><a href="average-and-sd.html#the-median"><i class="fa fa-check"></i><b>5.2.2</b> The Median</a></li>
+<li class="chapter" data-level="5.2.3" data-path="average-and-sd.html"><a href="average-and-sd.html#the-standard-deviation"><i class="fa fa-check"></i><b>5.2.3</b> The Standard Deviation</a></li>
+<li class="chapter" data-level="5.2.4" data-path="average-and-sd.html"><a href="average-and-sd.html#other-summaries"><i class="fa fa-check"></i><b>5.2.4</b> Other Summaries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html"><i class="fa fa-check"></i><b>6</b> Average and SD in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#mean-and-sd"><i class="fa fa-check"></i><b>6.1</b> <code>mean()</code> and <code>sd()</code></a><ul>
+<li class="chapter" data-level="6.1.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#a-note-about-rs-sd-function"><i class="fa fa-check"></i><b>6.1.1</b> A Note About R’s <code>sd()</code> Function</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#other-summaries-1"><i class="fa fa-check"></i><b>6.2</b> Other Summaries</a></li>
+<li class="chapter" data-level="6.3" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#data-frame-nuance"><i class="fa fa-check"></i><b>6.3</b> Data Frame Nuance</a></li>
+<li class="chapter" data-level="6.4" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#the-group_bysummarize-workflow"><i class="fa fa-check"></i><b>6.4</b> The <code>group_by()</code>/<code>summarize()</code> Workflow</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#group_by"><i class="fa fa-check"></i><b>6.4.1</b> <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#summarize"><i class="fa fa-check"></i><b>6.4.2</b> <code>summarize()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#geom_line"><i class="fa fa-check"></i><b>6.5</b> <code>geom_line()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="the-normal-model.html"><a href="the-normal-model.html"><i class="fa fa-check"></i><b>7</b> The Normal Model</a><ul>
+<li class="chapter" data-level="7.1" data-path="the-normal-model.html"><a href="the-normal-model.html#the-intuition-1"><i class="fa fa-check"></i><b>7.1</b> The Intuition</a></li>
+<li class="chapter" data-level="7.2" data-path="the-normal-model.html"><a href="the-normal-model.html#examples"><i class="fa fa-check"></i><b>7.2</b> Examples</a></li>
+<li class="chapter" data-level="7.3" data-path="the-normal-model.html"><a href="the-normal-model.html#the-empirical-rule"><i class="fa fa-check"></i><b>7.3</b> The Empirical Rule</a></li>
+<li class="chapter" data-level="7.4" data-path="the-normal-model.html"><a href="the-normal-model.html#the-normal-approximation"><i class="fa fa-check"></i><b>7.4</b> The Normal Approximation</a></li>
+<li class="chapter" data-level="7.5" data-path="the-normal-model.html"><a href="the-normal-model.html#the-normal-table"><i class="fa fa-check"></i><b>7.5</b> The Normal Table</a></li>
+<li class="chapter" data-level="7.6" data-path="the-normal-model.html"><a href="the-normal-model.html#using-a-normal-approximation"><i class="fa fa-check"></i><b>7.6</b> Using a Normal Approximation</a></li>
+<li class="chapter" data-level="7.7" data-path="the-normal-model.html"><a href="the-normal-model.html#example-the-extremity-of-party-leaders"><i class="fa fa-check"></i><b>7.7</b> Example: The Extremity of Party Leaders</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="the-x-y-space.html"><a href="the-x-y-space.html"><i class="fa fa-check"></i><b>8</b> The X-Y Space</a><ul>
+<li class="chapter" data-level="8.1" data-path="the-x-y-space.html"><a href="the-x-y-space.html#points"><i class="fa fa-check"></i><b>8.1</b> Points</a></li>
+<li class="chapter" data-level="8.2" data-path="the-x-y-space.html"><a href="the-x-y-space.html#lines"><i class="fa fa-check"></i><b>8.2</b> Lines</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="the-x-y-space.html"><a href="the-x-y-space.html#the-intercept"><i class="fa fa-check"></i><b>8.2.1</b> The Intercept</a></li>
+<li class="chapter" data-level="8.2.2" data-path="the-x-y-space.html"><a href="the-x-y-space.html#slope"><i class="fa fa-check"></i><b>8.2.2</b> Slope</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-scatterplot.html"><a href="the-scatterplot.html"><i class="fa fa-check"></i><b>9</b> The Scatterplot</a><ul>
+<li class="chapter" data-level="9.1" data-path="the-scatterplot.html"><a href="the-scatterplot.html#geom_point"><i class="fa fa-check"></i><b>9.1</b> <code>geom_point()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="the-scatterplot.html"><a href="the-scatterplot.html#example-gamsons-law"><i class="fa fa-check"></i><b>9.2</b> Example: Gamson’s Law</a></li>
+<li class="chapter" data-level="9.3" data-path="the-scatterplot.html"><a href="the-scatterplot.html#example-gapminder"><i class="fa fa-check"></i><b>9.3</b> Example: Gapminder</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html"><i class="fa fa-check"></i><b>10</b> Correlation Coefficient</a><ul>
+<li class="chapter" data-level="10.1" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#intuition"><i class="fa fa-check"></i><b>10.1</b> Intuition</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#computing"><i class="fa fa-check"></i><b>10.2</b> Computing</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#by-hand"><i class="fa fa-check"></i><b>10.2.1</b> By Hand</a></li>
+<li class="chapter" data-level="10.2.2" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#with-r"><i class="fa fa-check"></i><b>10.2.2</b> With R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#interpreting"><i class="fa fa-check"></i><b>10.3</b> Interpreting</a></li>
+<li class="chapter" data-level="10.4" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#example-clark-and-golder-2006"><i class="fa fa-check"></i><b>10.4</b> Example: Clark and Golder (2006)</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a-normal-table.html"><a href="appendix-a-normal-table.html"><i class="fa fa-check"></i><b>A</b> Appendix: A Normal Table</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Concepts and Computation: An Introduction to Political Methodology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="average-and-sd" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Average and SD</h1>
+<div id="the-intuition" class="section level2">
+<h2><span class="header-section-number">5.1</span> The Intuition</h2>
+<p>If we took a histogram and tried to describe it to someone else without showing it to them, the <strong>most</strong> important pieces of information are usually the <strong>average</strong> and <strong>standard deviation or SD</strong>.</p>
+<p>We might describe the variable this way: <strong>“The values are about __________, give or take ________ or so.”</strong> We can think of the first blank as the average and the second blank as the SD.</p>
+<ol style="list-style-type: decimal">
+<li>The <strong>average</strong> describes where the histogram is positioned along the left-right axis.</li>
+<li>The <strong>SD</strong> describes the width (or “spread” or “dispersion”) of the histogram.</li>
+</ol>
+<p>Note that the average and SD are not the <em>only</em> way to describe the “location” and “width” (“dispersion,” “spread”, or “scale”) of the histogram, but they are the most common.</p>
+<p>Inspect the collection of 20 numbers below. Fill in the blanks: <strong>“The values are about __________, give or take ________ or so.”</strong></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right">63</td>
+<td align="right">72</td>
+<td align="right">78</td>
+<td align="right">92</td>
+<td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="right">62</td>
+<td align="right">75</td>
+<td align="right">74</td>
+<td align="right">81</td>
+<td align="right">88</td>
+</tr>
+<tr class="odd">
+<td align="right">68</td>
+<td align="right">79</td>
+<td align="right">97</td>
+<td align="right">88</td>
+<td align="right">82</td>
+</tr>
+<tr class="even">
+<td align="right">79</td>
+<td align="right">72</td>
+<td align="right">98</td>
+<td align="right">85</td>
+<td align="right">86</td>
+</tr>
+</tbody>
+</table>
+<p>If we had to describe these data, we might say that our variable is “about 80, give or take 10 or so.” We can also visually these two summaries with a histogram.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-40-1.png" width="576" /></p>
+<p>While this variable has a particular average (about 80), we can imagine shifting it left or right. The figure below shows some possible shifts. We could shift it way to the left, so that it’s “about 40” or a little bit to the right so that it’s “about 90.”</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-41-1.png" width="576" /></p>
+<p>We can also imagine increasing the SD (more spread) or decreasing the SD (less spread). The figure below shows some possible changes in the SD. In each case, the “give or take” number is changing.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-42-1.png" width="576" /></p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-43" class="exercise"><strong>Exercise 5.1  </strong></span>For the following nine lists, choose whether the average is 0, 5, or 10 and the SD is 2, 10, or 20. You don’t need to do any calculation.</p>
+<ol style="list-style-type: decimal">
+<li>-22, -10, 35, 7, -29, 14, 9, -3, 23, 27</li>
+<li>-14, 17, 5, 8, 16, 12, 14, 16, 3, 24</li>
+<li>10, -13, 6, 6, 4, -1, -8, 19, 6, 21</li>
+<li>27, 37, -11, -23, 24, 15, -10, 2, 36, 2</li>
+<li>5, 6, 6, 2, 3, 3, 9, 4, 6, 6</li>
+<li>-12, -3, 9, 11, -1, 2, -7, 3, 16, -18</li>
+<li>12, 12, 9, 10, 12, 12, 6, 10, 11, 7</li>
+<li>0, -2, 0, 3, 3, 0, -2, -3, -1, 2</li>
+<li>-3, 28, 12, 7, 25, 3, -38, -25, 7, -16
+</div>
+<details>
+<summary>Solution</summary>
+<p></li>
+</ol>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+List
+</th>
+<th style="text-align:right;">
+Mean
+</th>
+<th style="text-align:right;">
+SD
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+</details>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-47" class="exercise"><strong>Exercise 5.2  </strong></span>For the following nine histograms, choose whether the average is 0, 5, or 10 and the SD is 2, 10, or 20. You don’t need to do any calculations.</p>
+<img src="exercises/ex-3242.png" />
+</div>
+
+<details>
+<summary>Solution</summary>
+<p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Histogram
+</th>
+<th style="text-align:right;">
+Mean
+</th>
+<th style="text-align:right;">
+SD
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Histogram 1
+</td>
+<td style="text-align:right;">
+9.97
+</td>
+<td style="text-align:right;">
+20.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 2
+</td>
+<td style="text-align:right;">
+10.07
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 3
+</td>
+<td style="text-align:right;">
+9.94
+</td>
+<td style="text-align:right;">
+9.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 4
+</td>
+<td style="text-align:right;">
+5.05
+</td>
+<td style="text-align:right;">
+2.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 5
+</td>
+<td style="text-align:right;">
+5.07
+</td>
+<td style="text-align:right;">
+10.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 6
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+20.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 7
+</td>
+<td style="text-align:right;">
+4.94
+</td>
+<td style="text-align:right;">
+20.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 8
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+1.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Histogram 9
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+9.97
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+</details>
+</div>
+<div id="the-measures" class="section level2">
+<h2><span class="header-section-number">5.2</span> The Measures</h2>
+<div id="the-average" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> The Average</h3>
+<p>The most common measure of the location of a variable is the average.<a href="references.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Suppose we have a variable (a list of numbers) <span class="math inline">\(X = \{x_1, x_2, ..., x_n\}\)</span>.</p>
+<p><span class="math display">\[\begin{equation}
+\text{average} = \dfrac{\text{the sum of the list}}{\text{the number of entries in the list}} = \dfrac{\sum_{i = 1}^n x_i}{n} \nonumber
+\end{equation}\]</span></p>
+<p>The average is easy to compute and easy to work with mathematically.<a href="references.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Unfortunately, the average doesn’t have an easy interpretation. The best interpretation, in my mind, is as the balance-point for the data. If we imagine the left-right axis as a teeter-totter and stack the data along the beam according to their values, then the average is the position of the fulcrum that would balance the data-filled beam.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-49-1.png" width="864" /></p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-50" class="exercise"><strong>Exercise 5.3  </strong></span>Compute the average of the following lists of numbers. Round to two decimals placed as necessary.</p>
+<ol style="list-style-type: decimal">
+<li>{0, 1}</li>
+<li>{0, 0, 1}</li>
+<li>{0, 1, 1}</li>
+<li>{0, 10}</li>
+<li>{0, 1, 2}</li>
+<li>{3, 6, 7, 1}</li>
+<li>{8, -4, 16, 4, 7}</li>
+<li>{7, -4, 7, 7, -4}
+</div></li>
+</ol>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-51" class="exercise"><strong>Exercise 5.4  </strong></span>Suppose the entries in a list are between 1 and 10 (including both 1 and 10). What is the lowest possible average? What is the highest possible average?
+</div>
+
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-52" class="exercise"><strong>Exercise 5.5  </strong></span>To find the percent of observations that fall into a particular category, I count the number of observations <em>in that category</em> and divide that by the total number. That number lies between 0 and one. We refer to that number as a “proportion.” To convert the proportion to a percent, we just multiply the proportion times 100%.</p>
+Suppose I asked 10 survey respondents whether they voted in the previous presidential election and obtained the following responses: {Yes, No, No, No, Yes, Yes, No, No, No, No}. What percent said “Yes”? What if I changed the “Yes” responses to the number 1 and the “No” responses to the number 0, then found the average? Is that related to the percent that said “Yes”? Is counting the “Yes” responses like changing them to ones, changing everything else to 0, and adding up the 0s and 1s?
+</div>
+
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-53" class="exercise"><strong>Exercise 5.6  </strong></span>Suppose a list of 10 numbers with an average of 50. If I add the number 100 to the list, what is the average of all 11 numbers?
+</div>
+
+<details>
+<summary>Solution</summary>
+<p>
+If the average of the ten numbers is 50, then the sum of the ten numbers must be 500. If the sum of the ten numbers is 500, then the sum of the eleven numbers is 600. Since the sum of the eleven numbers is 600, the average is 600/11 = 54.55.
+</p>
+</details>
+</div>
+<div id="the-median" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> The Median</h3>
+<p>When we’re describing the location of a variable (or, visually, of the histogram), we typically use the average. However, some researchers use the median. I introduce the median as an alternative to the average for two reasons. First, it helps us better understand the average conceptually. Second, you might encounter it, so it’s good to understand how the median works.</p>
+<p>The median is the (or one of the) numbers that divides the variable (or, visually, the histogram) into two equal pieces.</p>
+<p>For example, the number 3 divides the variable <span class="math inline">\(X = \{1, 2, 2, 3, 4, 6, 8\}\)</span> into two equal pieces. The three values 1, 2, and 2 fall below the number 3. The three values 4, 6, and 8 fall above 3. Because 3 splits the variable into two equal pieces, it is the median.</p>
+<p>If you order the variable from highest to lowest, you can think of the median as the “middle” value.</p>
+<p>Notice, though, that things can run amok when we have an even number of observations in our variable. Consider the variable <span class="math inline">\(X = \{1, 2, 2, 4, 6, 8\}\)</span>. There is no “middle” value here.</p>
+<p>Notice that the values 3, 2.7, and 3.76421 all split the variable into equal pieces (1, 2, and 2 fall below each of these values; 4, 6, and 8 fall above). This means that there are mmany values that split the variable into equal pieces. But it isn’t very helpful—we need a single median to summarize the variable.</p>
+<p>When the number of observations in the variable is even, we just find the <em>two</em> middle values and split the difference. For the variable <span class="math inline">\(X = \{1, 2, 2, 4, 6, 8\}\)</span>, the numbers 2 and 4 are the two middle numbers. To “split the difference,” we just average them. The average of 2 and 4 is (2 + 4)/2 = 3. In this case, then, the median is three.</p>
+<p>In summary, we find the median with the following algorithm:</p>
+<ol style="list-style-type: decimal">
+<li>Order the values from lowest to highest.</li>
+<li>If the number of values is odd, then just find the middle value.</li>
+<li>If the number of values is even, then find the <em>two</em> middle values and split the difference (or average them).</li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-54" class="exercise"><strong>Exercise 5.7  </strong></span>Find the average and median of the following variables. (I already ordered them from highest to lowest.)</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X = \{1, 3, 4, 6, 8\}\)</span></li>
+<li><span class="math inline">\(X = \{1, 3, 4, 6, 80\}\)</span></li>
+<li><span class="math inline">\(X = \{1, 3, 4, 6, 800\}\)</span></li>
+<li><span class="math inline">\(X = \{1, 3, 4, 600, 800\}\)</span></li>
+</ol>
+<p>Do you notice something interesting? Explain.</p>
+What is the average and median for <span class="math inline">\(X = \{1, 3, 400, 600, 800\}\)</span>? What changed?
+</div>
+
+<p>The previous exercise illustrates something important about the average and the median. When a variable has a histogram with a longer tail in one direction, that long tail pulls the average away from the median in the direction of the tail. This happens because a adding few unusually large values can change average quite a lot, while changing the median very little.</p>
+<p>Remember that the average is the balance point for the histogram. As a tail stretches out in one direction, those data exert greater leverage and can pull the average in that direction.</p>
+<p>When a histogram has a longer tail to the right, we say that histogram is “right-skewed” or “skewed to the right.” When a histogram has a longer tail to the left, we say that histogram is “left-skewed” or “skewed to the left.”</p>
+<p>The figure below shows examples of a histogram with no skew, one that is skewed to the right, and one that is skewed to the left. It shows the average and median for each. Notice how the long tail pulls the average away from the median toward the long tail.</p>
+<pre><code>## Observations: 6
+## Variables: 4
+## $ group &lt;chr&gt; &quot;No Skew&quot;, &quot;No Skew&quot;, &quot;Skewed to the Left&quot;, &quot;Skewed to the…
+## $ name  &lt;chr&gt; &quot;Average&quot;, &quot;Median&quot;, &quot;Average&quot;, &quot;Median&quot;, &quot;Average&quot;, &quot;Medi…
+## $ value &lt;dbl&gt; 51.08652, 51.05596, 75.87061, 78.36764, 19.71639, 17.28709
+## $ y     &lt;dbl&gt; 0, 0, 0, 0, 0, 0</code></pre>
+<p><img src="notes_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-57" class="exercise"><strong>Exercise 5.8  </strong></span>For each histogram below, roughly estimate the average. Next, decide whether the histogram has no skew, is skewed to the right, or is skewed to the left. Then decide whether the median is less than, greater than, or about equal to the average.</p>
+<img src="exercises/ex-6753.png" />
+</div>
+
+<details>
+<summary>Solution</summary>
+<p>
+<ol style="list-style-type: decimal">
+<li>no skew; median about the average</li>
+<li>no skew; median about the average</li>
+<li>skewed to the right; median below the average</li>
+<li>skewed to the left; median avove the average</li>
+<li>no skew; median about the average</li>
+</ol>
+</p>
+</details>
+</div>
+<div id="the-standard-deviation" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> The Standard Deviation</h3>
+<p>The most common measure of spread is the standard deviation (SD). The intuition is subtle, so let’s look a a simple example. Rember, our goal is a “give-or-take” number.</p>
+<p>Suppose we have a list of numbers <span class="math inline">\(X = \{1, 2, 3, 4, 5\}\)</span>. The average of this list is 3, so we can compute the <em>deviation from average</em> or <span class="math inline">\(d\)</span> for each value.</p>
+<p><span class="math display">\[\begin{equation}
+\text{deviation from average} = d = \text{value} - \text{average} \nonumber
+\end{equation}\]</span></p>
+<p>In this case, <span class="math inline">\(d = \{-2, -1, 0, 1, 2\}\)</span>.</p>
+<p>We want to use these deviations to find a give-or-take number.</p>
+<p>Here’s an initial idea. Just take the absolute values <span class="math inline">\(|d| = \{2, 1, 0, 1, 2\}\)</span>. These tell us how far each entry falls away from the average. Then we could average the absolute devations to find how far a typical entries falls away from the average of the list. In this case, we get 1.2. This is reasonable approach and we’ll refer to it as the “average absolute devation” or a.a.d. (It turns out that the a.a.d. isn’t a common quantity, so I don’t elevate it with an all-caps acronym.)</p>
+<p>The a.a.d. has one big problem–it uses an absolute value. This introduces some computational and mathematical difficulties.</p>
+<p>So let’s do something similar. Rather than take the absolute value, let’s square the deviations, take the average, and then undo the square at the end, so that <span class="math inline">\(\text{SD} = \sqrt{\text{avg}(d^2)}\)</span>.</p>
+<p>Sometimes taking the (3) square root of (2) the average of (1) the squares is called the RMS. In this case, the <strong>RMS of the deviations from the average is the SD</strong>, so that</p>
+<p><span class="math display">\[\begin{equation}
+\text{SD} = \sqrt{\text{avg}(d^2)} = \sqrt{\dfrac{(x_i - \text{avg}(X))^2}{n}} = \text{RMS of deviations from average}. \nonumber
+\end{equation}\]</span></p>
+<p>The SD moves avoid the computation problems with the a.a.d.</p>
+<p>To calculate the SD, first make this little table, with the list of values, the deviations from the average, and the squares of the deviations.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right"><span class="math inline">\(X\)</span></th>
+<th align="right"><span class="math inline">\(d\)</span></th>
+<th align="right"><span class="math inline">\(d^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">-2</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<p>Then compute the average of the squares of the deviations, which in this case is 2. Then take the square root of that average, which in this case is about 1.4. Notice that 1.4 is about 1.2 (the a.a.d.). The SD is bounded (weakly) below by the a.a.s., but they’ll usually be close, so we can think of the SD as how far a typical point falls away from the average.</p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-59" class="exercise"><strong>Exercise 5.9  </strong></span>Recall that we define the SD as the RMS of the deviations from average. This definition reveals the steps to compute the SD–just work your way <em>backwards</em> through it. Remember that “R” stands for “root” (or “square root”), “M” stands for “mean” (or “average”), and “S” stands for “square.”</p>
+<ol style="list-style-type: decimal">
+<li>Find <strong>the average</strong>.</li>
+<li>Find the <strong>deviations from</strong> <em>the average</em>.</li>
+<li>Find the <strong>S of</strong> <em>the deviations from the average</em>.</li>
+<li>Find the <strong>M</strong><em>S of the deviations from the average</em>.</li>
+<li>Find the <strong>R</strong><em>MS of the deviations from the average</em>. This is the SD.</li>
+</ol>
+Now try these calculations for the list of numbers {5, 4, 8, 2, 6}. Clearly divide your work into the five steps above and connect each step back to the definition.
+</div>
+
+<details>
+<summary>Solution</summary>
+<p>
+<ol style="list-style-type: decimal">
+<li>5,</li>
+<li>0, -1, 3, -3, 1</li>
+<li>0, 1, 9, 9, 1</li>
+<li>4+</li>
+<li>2</li>
+</ol>
+</p>
+</details>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-60" class="exercise"><strong>Exercise 5.10  </strong></span>Find the average and SD of the following lists of numbers. Round to two decimal places where necessary.</p>
+<ol style="list-style-type: decimal">
+<li>4, 2, 5, 6, 7</li>
+<li>5, 2, 7, 10, 18</li>
+<li>87, 123, 47, 62, 153
+</div></li>
+</ol>
+</div>
+<div id="other-summaries" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> Other Summaries</h3>
+<p>The combination of the average and SD is sometimes called a “two-number summary.” This combinations summarizes two important features of a variable using only two numbers. However, there are a few more ways to summarize a variable.</p>
+<ul>
+<li>Minimum or Min: the smallest value of the varaible.</li>
+<li>Maximum or Max: the largest value of the variable.</li>
+<li>25th Percentile or 1st Quartile: the point which 25% of the data fall below and 75% fall above. To compute, arrange the data from lowest to highest and divide the data into an upper and lower half. If the total number of values is odd, the exclude the median from both halves. The 25th percentile is the median of the lower half.</li>
+<li>75th Percentile or 3rd Quartile: the point which 75% of the data fall below and 25% fall above. The 75th percentile is the median of the upper half from above.</li>
+<li>Interquartile Range or IQR: the difference between the 75th and 25th percentiles. Intuitively, this is the width of the middle 50% of the data.</li>
+</ul>
+<p>We sometimes refer to the median, 25th and 75th percentiles, and minimum and maximum as the five-number summary.</p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-61" class="exercise"><strong>Exercise 5.11  </strong></span>Find the five-number summaries (min, 25th percentile, median, 75th percentile, max) of the following lists of numbers. Also compute the interquartile range. Round to two decimal places where necessary.</p>
+<ol style="list-style-type: decimal">
+<li>27, 9, 6, 38, 51, 61, 61, 95, 72</li>
+<li>33, 6, 0, 28, 21, 5, 86, 67</li>
+<li>3.57, 1.43, 3.55, 4.82, 2.59, 4.41, 5.14, 2.84, 4.89</li>
+<li>3.8, 5.9, 6.3, 4.4, 8.3, 9.1, 6.8, 8.1, 5.4, 9.9, 5.8, 7.2
+</div></li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-62" class="exercise"><strong>Exercise 5.12  </strong></span>As political scientists, we think a lot about trends in partisanship and voting behavior. Going back to <em>The American Voter</em>, published in 1960, the partisan identity of an individual has seemed to be the dominant factor in determining for whom they cast a vote.</p>
+<ol style="list-style-type: decimal">
+<li>Before Looking at the figures below, how do you think partisan trends have shifted since the 1950s? Have people become more or less partisan? Why do you think this is? Write down a paragraph or so sketching out your model of partisanship trends.
+</div></li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-63" class="exercise"><strong>Exercise 5.13  </strong></span>The figures below are taken from “Partisanship and Voting Behavior, 1952-1996” published in 2000 by Larry Bartels.</p>
+<p><img src="exercises/partisanship-fig-1.PNG" /></p>
+<p>Figure 1 shows the proportion of survey respondents who identified as a “Weak Partisan” or a “Strong Partisan”, as well as those who consider themselves “Independent Leaners” or “Pure independents”. An Independent leaner is someone who may not be registered with a party (or does not think of themselves as ‘belonging’ to either party), but nevertheless consistently supports one party over the other.</p>
+<ol style="list-style-type: decimal">
+<li><p>What proportion of the sample identified as partisan in 1952? Is this more or less than in 1996?</p></li>
+<li><p>Assume approximately 10,000 people responded to the survey in each year of the survey. Approximately how many more people considered themselves weak identifiers in 1976 than strong identifiers?</p></li>
+<li><p>Again, assume 10,000 responses in each iteration of the survey: are there more independents in 1996 than partisans? Of the independents, are more “leaners” or “pure”?</p></li>
+</ol>
+<p><img src="exercises/partisanship-fig-2.PNG" /></p>
+<p>Figure 2 shows the proportion of voters and nonvoters who identify themselves with one party or the other.</p>
+<ol style="list-style-type: decimal">
+<li><p>In general, are those who vote more or less partisan than those who do not?</p></li>
+<li><p>In terms of partisanship, have voters and nonvoters become more or less similar?</p>
+</div></li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-64" class="exercise"><strong>Exercise 5.14  </strong></span>How well do the data above support (or not) your hypothesized model? How would you change your model to accommodate this new information?</p>
+<ol style="list-style-type: decimal">
+<li>These data end in 1996. If we collected data up to 2020 for figures 1 and 2, do you think the trends you identified would continue? Why?</li>
+</ol>
+</div>
+
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="histograms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="average-and-sd-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["notes.pdf", "notes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
