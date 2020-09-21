@@ -154,7 +154,7 @@ Let's take a close look at the nominate dataset.
 library(tidyverse)
 
 # load nominate data
-nominate_df <- read_rds("nominate.rds") 
+nominate_df <- read_rds("data/nominate.rds") 
 
 # quick look
 glimpse(nominate_df)
