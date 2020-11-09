@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "These are my notes for my class introducing the fundamental conceptual and computational tools to first-year PhD students in politial science."
+description: "These are my notes for my class introducing the fundamental conceptual and computational tools to undergraduate students in politial science."
 ---
 
 # Overview
@@ -20,4 +20,4 @@ While FPP is a fantastic textbook, it has three shortcomings:
 
 Rob and Carlisle are making an effort to write a more cohesive set of notes that cover the same content, but with modern, political examples and statistical computation.
 
-This is an in-progress effort, so these notes constantly evolve. Eventally, we hope they can replace the textbook, but they cannot at the moment. Instead, we hope these notes helpfully *supplement* the textbook.
+This is an in-progress effort, so these notes constantly evolve. Eventually, we hope they can replace the textbook, but they cannot at the moment. Instead, we hope these notes helpfully *supplement* the textbook.

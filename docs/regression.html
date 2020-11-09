@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Regression | Concepts and Computation: An Introduction to Political Methodology</title>
+  <meta name="description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to undergraduate students in politial science." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Regression | Concepts and Computation: An Introduction to Political Methodology" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to undergraduate students in politial science." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Regression | Concepts and Computation: An Introduction to Political Methodology" />
+  
+  <meta name="twitter:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to undergraduate students in politial science." />
+  
+
+<meta name="author" content="Rob Lytle and Carlisle Rainey" />
+
+
+<meta name="date" content="2020-11-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="correlation-coefficient.html"/>
+<link rel="next" href="appendix-a-normal-table.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        process_solutions();
+    });
+    function process_solutions() {
+        $("div.section[id^='solution']").each(function(i) {
+        var soln_wrapper_id = "cvxr_ex_" + i;
+        var solution_id = $(this).attr('id');
+        var button = $("<button onclick=\"toggle_solution('" + soln_wrapper_id + "')\">Show/Hide</button>");
+        var new_div = $("<div id='" + soln_wrapper_id + "' class='solution' style='display: none;'></div>");
+        var h = $(this).first();
+        var others = $(this).children().slice(1);
+        $(others).each(function() {
+            $(this).appendTo($(new_div));
+        });
+        $(button).insertAfter($(h));
+        $(new_div).insertAfter($(button));
+        })
+    }
+    function toggle_solution(el_id) {
+      $("#" + el_id).toggle();
+    } 
+</script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Concepts and Computation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
+<li class="chapter" data-level="2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html"><i class="fa fa-check"></i><b>2</b> Statistical Computing with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#r-as-a-calculator"><i class="fa fa-check"></i><b>2.1</b> R as a Calculator</a></li>
+<li class="chapter" data-level="2.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#importance"><i class="fa fa-check"></i><b>2.2.1</b> Importance</a></li>
+<li class="chapter" data-level="2.2.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#comments"><i class="fa fa-check"></i><b>2.2.2</b> Comments</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#object-oriented-programming"><i class="fa fa-check"></i><b>2.3</b> Object-Oriented Programming</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#scalars"><i class="fa fa-check"></i><b>2.3.1</b> Scalars</a></li>
+<li class="chapter" data-level="2.3.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#functions"><i class="fa fa-check"></i><b>2.3.2</b> Functions</a></li>
+<li class="chapter" data-level="2.3.3" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#vectors"><i class="fa fa-check"></i><b>2.3.3</b> Vectors</a></li>
+<li class="chapter" data-level="2.3.4" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#more-information"><i class="fa fa-check"></i><b>2.3.4</b> More Information</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#missing-values"><i class="fa fa-check"></i><b>2.4</b> Missing Values</a></li>
+<li class="chapter" data-level="2.5" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#logical-operators"><i class="fa fa-check"></i><b>2.5</b> Logical Operators</a></li>
+<li class="chapter" data-level="2.6" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#packages"><i class="fa fa-check"></i><b>2.6</b> Packages</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#installing-packages"><i class="fa fa-check"></i><b>2.6.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statistical-computing-with-r.html"><a href="statistical-computing-with-r.html#loading-packages"><i class="fa fa-check"></i><b>2.6.2</b> Loading Packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html"><i class="fa fa-check"></i><b>3</b> Loading Data into R</a><ul>
+<li class="chapter" data-level="3.1" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#the-terms"><i class="fa fa-check"></i><b>3.1</b> The Terms</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#file-types"><i class="fa fa-check"></i><b>3.1.1</b> File Types</a></li>
+<li class="chapter" data-level="3.1.2" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#comma-separated-value-format-.csv"><i class="fa fa-check"></i><b>3.1.2</b> Comma-Separated Value Format (<code>.csv</code>)</a></li>
+<li class="chapter" data-level="3.1.3" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#the-working-directory"><i class="fa fa-check"></i><b>3.1.3</b> The Working Directory</a></li>
+<li class="chapter" data-level="3.1.4" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#the-path"><i class="fa fa-check"></i><b>3.1.4</b> The Path</a></li>
+<li class="chapter" data-level="3.1.5" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#determining-the-path"><i class="fa fa-check"></i><b>3.1.5</b> Determining the Path</a></li>
+<li class="chapter" data-level="3.1.6" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#rio"><i class="fa fa-check"></i><b>3.1.6</b> <code>rio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#data-frames"><i class="fa fa-check"></i><b>3.2</b> Data Frames</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#working-with-variables-in-data-frames"><i class="fa fa-check"></i><b>3.2.1</b> Working with Variables in Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="loading-data-into-r.html"><a href="loading-data-into-r.html#how-well-always-use-r"><i class="fa fa-check"></i><b>3.3</b> How We’ll Always Use R</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="histograms.html"><a href="histograms.html"><i class="fa fa-check"></i><b>4</b> Histograms</a><ul>
+<li class="chapter" data-level="4.1" data-path="histograms.html"><a href="histograms.html#nominate-data"><i class="fa fa-check"></i><b>4.1</b> NOMINATE Data</a></li>
+<li class="chapter" data-level="4.2" data-path="histograms.html"><a href="histograms.html#histograms-geom_histogram"><i class="fa fa-check"></i><b>4.2</b> Histograms: <code>geom_histogram()</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="histograms.html"><a href="histograms.html#the-three-critical-components"><i class="fa fa-check"></i><b>4.2.1</b> The Three Critical Components</a></li>
+<li class="chapter" data-level="4.2.2" data-path="histograms.html"><a href="histograms.html#drawing-a-histogram"><i class="fa fa-check"></i><b>4.2.2</b> Drawing a Histogram</a></li>
+<li class="chapter" data-level="4.2.3" data-path="histograms.html"><a href="histograms.html#but-geom_histogram-uses-counts"><i class="fa fa-check"></i><b>4.2.3</b> But <code>geom_histogram()</code> uses counts!</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="histograms.html"><a href="histograms.html#filtering-filter"><i class="fa fa-check"></i><b>4.3</b> Filtering: <code>filter()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="histograms.html"><a href="histograms.html#faceting-facet_wrap"><i class="fa fa-check"></i><b>4.4</b> Faceting: <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="histograms.html"><a href="histograms.html#density-plots-geom_density"><i class="fa fa-check"></i><b>4.5</b> Density Plots: <code>geom_density()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="histograms.html"><a href="histograms.html#color-and-fill"><i class="fa fa-check"></i><b>4.6</b> Color and Fill</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="histograms.html"><a href="histograms.html#color"><i class="fa fa-check"></i><b>4.6.1</b> Color</a></li>
+<li class="chapter" data-level="4.6.2" data-path="histograms.html"><a href="histograms.html#fill"><i class="fa fa-check"></i><b>4.6.2</b> Fill</a></li>
+<li class="chapter" data-level="4.6.3" data-path="histograms.html"><a href="histograms.html#alpha"><i class="fa fa-check"></i><b>4.6.3</b> Alpha</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="histograms.html"><a href="histograms.html#labels-labs"><i class="fa fa-check"></i><b>4.7</b> Labels: <code>labs()</code></a></li>
+<li class="chapter" data-level="4.8" data-path="histograms.html"><a href="histograms.html#themes-theme_bw-and-others"><i class="fa fa-check"></i><b>4.8</b> Themes: <code>theme_bw()</code> and Others</a></li>
+<li class="chapter" data-level="4.9" data-path="histograms.html"><a href="histograms.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.9</b> Putting It All Together</a></li>
+<li class="chapter" data-level="4.10" data-path="histograms.html"><a href="histograms.html#saving-plots-ggsave"><i class="fa fa-check"></i><b>4.10</b> Saving Plots: <code>ggsave()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="average-and-sd.html"><a href="average-and-sd.html"><i class="fa fa-check"></i><b>5</b> Average and SD</a><ul>
+<li class="chapter" data-level="5.1" data-path="average-and-sd.html"><a href="average-and-sd.html#the-intuition"><i class="fa fa-check"></i><b>5.1</b> The Intuition</a></li>
+<li class="chapter" data-level="5.2" data-path="average-and-sd.html"><a href="average-and-sd.html#the-measures"><i class="fa fa-check"></i><b>5.2</b> The Measures</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="average-and-sd.html"><a href="average-and-sd.html#the-average"><i class="fa fa-check"></i><b>5.2.1</b> The Average</a></li>
+<li class="chapter" data-level="5.2.2" data-path="average-and-sd.html"><a href="average-and-sd.html#the-median"><i class="fa fa-check"></i><b>5.2.2</b> The Median</a></li>
+<li class="chapter" data-level="5.2.3" data-path="average-and-sd.html"><a href="average-and-sd.html#the-standard-deviation"><i class="fa fa-check"></i><b>5.2.3</b> The Standard Deviation</a></li>
+<li class="chapter" data-level="5.2.4" data-path="average-and-sd.html"><a href="average-and-sd.html#other-summaries"><i class="fa fa-check"></i><b>5.2.4</b> Other Summaries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html"><i class="fa fa-check"></i><b>6</b> Average and SD in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#mean-and-sd"><i class="fa fa-check"></i><b>6.1</b> <code>mean()</code> and <code>sd()</code></a><ul>
+<li class="chapter" data-level="6.1.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#a-note-about-rs-sd-function"><i class="fa fa-check"></i><b>6.1.1</b> A Note About R’s <code>sd()</code> Function</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="average-and-sd.html"><a href="average-and-sd.html#other-summaries"><i class="fa fa-check"></i><b>6.2</b> Other Summaries</a></li>
+<li class="chapter" data-level="6.3" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#data-frame-nuance"><i class="fa fa-check"></i><b>6.3</b> Data Frame Nuance</a></li>
+<li class="chapter" data-level="6.4" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#the-group_bysummarize-workflow"><i class="fa fa-check"></i><b>6.4</b> The <code>group_by()</code>/<code>summarize()</code> Workflow</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#group_by"><i class="fa fa-check"></i><b>6.4.1</b> <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#summarize"><i class="fa fa-check"></i><b>6.4.2</b> <code>summarize()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#geom_line"><i class="fa fa-check"></i><b>6.5</b> <code>geom_line()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="the-normal-model.html"><a href="the-normal-model.html"><i class="fa fa-check"></i><b>7</b> The Normal Model</a><ul>
+<li class="chapter" data-level="7.1" data-path="average-and-sd.html"><a href="average-and-sd.html#the-intuition"><i class="fa fa-check"></i><b>7.1</b> The Intuition</a></li>
+<li class="chapter" data-level="7.2" data-path="the-normal-model.html"><a href="the-normal-model.html#examples"><i class="fa fa-check"></i><b>7.2</b> Examples</a></li>
+<li class="chapter" data-level="7.3" data-path="the-normal-model.html"><a href="the-normal-model.html#the-empirical-rule"><i class="fa fa-check"></i><b>7.3</b> The Empirical Rule</a></li>
+<li class="chapter" data-level="7.4" data-path="the-normal-model.html"><a href="the-normal-model.html#the-normal-approximation"><i class="fa fa-check"></i><b>7.4</b> The Normal Approximation</a></li>
+<li class="chapter" data-level="7.5" data-path="the-normal-model.html"><a href="the-normal-model.html#the-normal-table"><i class="fa fa-check"></i><b>7.5</b> The Normal Table</a></li>
+<li class="chapter" data-level="7.6" data-path="the-normal-model.html"><a href="the-normal-model.html#using-a-normal-approximation"><i class="fa fa-check"></i><b>7.6</b> Using a Normal Approximation</a></li>
+<li class="chapter" data-level="7.7" data-path="the-normal-model.html"><a href="the-normal-model.html#example-the-extremity-of-party-leaders"><i class="fa fa-check"></i><b>7.7</b> Example: The Extremity of Party Leaders</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="the-x-y-space.html"><a href="the-x-y-space.html"><i class="fa fa-check"></i><b>8</b> The X-Y Space</a><ul>
+<li class="chapter" data-level="8.1" data-path="the-x-y-space.html"><a href="the-x-y-space.html#points"><i class="fa fa-check"></i><b>8.1</b> Points</a></li>
+<li class="chapter" data-level="8.2" data-path="the-x-y-space.html"><a href="the-x-y-space.html#lines"><i class="fa fa-check"></i><b>8.2</b> Lines</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="the-x-y-space.html"><a href="the-x-y-space.html#the-intercept"><i class="fa fa-check"></i><b>8.2.1</b> The Intercept</a></li>
+<li class="chapter" data-level="8.2.2" data-path="the-x-y-space.html"><a href="the-x-y-space.html#slope"><i class="fa fa-check"></i><b>8.2.2</b> Slope</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-scatterplot.html"><a href="the-scatterplot.html"><i class="fa fa-check"></i><b>9</b> The Scatterplot</a><ul>
+<li class="chapter" data-level="9.1" data-path="the-scatterplot.html"><a href="the-scatterplot.html#geom_point"><i class="fa fa-check"></i><b>9.1</b> <code>geom_point()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="the-scatterplot.html"><a href="the-scatterplot.html#example-gamsons-law"><i class="fa fa-check"></i><b>9.2</b> Example: Gamson’s Law</a></li>
+<li class="chapter" data-level="9.3" data-path="the-scatterplot.html"><a href="the-scatterplot.html#example-gapminder"><i class="fa fa-check"></i><b>9.3</b> Example: Gapminder</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html"><i class="fa fa-check"></i><b>10</b> Correlation Coefficient</a><ul>
+<li class="chapter" data-level="10.1" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#intuition"><i class="fa fa-check"></i><b>10.1</b> Intuition</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#computing"><i class="fa fa-check"></i><b>10.2</b> Computing</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#by-hand"><i class="fa fa-check"></i><b>10.2.1</b> By Hand</a></li>
+<li class="chapter" data-level="10.2.2" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#with-r"><i class="fa fa-check"></i><b>10.2.2</b> With R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#interpreting"><i class="fa fa-check"></i><b>10.3</b> Interpreting</a></li>
+<li class="chapter" data-level="10.4" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#example-clark-and-golder-2006"><i class="fa fa-check"></i><b>10.4</b> Example: Clark and Golder (2006)</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>11</b> Regression</a><ul>
+<li class="chapter" data-level="11.1" data-path="regression.html"><a href="regression.html#the-equation"><i class="fa fa-check"></i><b>11.1</b> The Equation</a></li>
+<li class="chapter" data-level="11.2" data-path="regression.html"><a href="regression.html#the-conditional-average"><i class="fa fa-check"></i><b>11.2</b> The Conditional Average</a></li>
+<li class="chapter" data-level="11.3" data-path="regression.html"><a href="regression.html#the-best-line"><i class="fa fa-check"></i><b>11.3</b> The Best Line</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="regression.html"><a href="regression.html#grid-search"><i class="fa fa-check"></i><b>11.3.1</b> Grid Search</a></li>
+<li class="chapter" data-level="11.3.2" data-path="regression.html"><a href="regression.html#analytical-optimization"><i class="fa fa-check"></i><b>11.3.2</b> Analytical Optimization</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="regression.html"><a href="regression.html#the-rms-of-the-residuals"><i class="fa fa-check"></i><b>11.4</b> The RMS of the Residuals</a></li>
+<li class="chapter" data-level="11.5" data-path="regression.html"><a href="regression.html#r2"><i class="fa fa-check"></i><b>11.5</b> <span class="math inline">\(R^2\)</span></a><ul>
+<li class="chapter" data-level="11.5.1" data-path="regression.html"><a href="regression.html#adequacy-of-a-line"><i class="fa fa-check"></i><b>11.5.1</b> Adequacy of a Line</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="regression.html"><a href="regression.html#fitting-regression-models"><i class="fa fa-check"></i><b>11.6</b> Fitting Regression Models</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="regression.html"><a href="regression.html#geom_smooth"><i class="fa fa-check"></i><b>11.6.1</b> <code>geom_smooth()</code></a></li>
+<li class="chapter" data-level="11.6.2" data-path="regression.html"><a href="regression.html#lm"><i class="fa fa-check"></i><b>11.6.2</b> <code>lm()</code></a></li>
+<li class="chapter" data-level="11.6.3" data-path="regression.html"><a href="regression.html#quick-look-at-the-fit"><i class="fa fa-check"></i><b>11.6.3</b> Quick Look at the Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="regression.html"><a href="regression.html#standard-errors-and-p-values"><i class="fa fa-check"></i><b>11.7</b> Standard Errors and <em>p</em>-Values</a></li>
+<li class="chapter" data-level="11.8" data-path="regression.html"><a href="regression.html#a-warning"><i class="fa fa-check"></i><b>11.8</b> A Warning</a></li>
+<li class="chapter" data-level="11.9" data-path="regression.html"><a href="regression.html#review-exercises"><i class="fa fa-check"></i><b>11.9</b> Review Exercises</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a-normal-table.html"><a href="appendix-a-normal-table.html"><i class="fa fa-check"></i><b>A</b> Appendix: A Normal Table</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Concepts and Computation: An Introduction to Political Methodology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Regression</h1>
+<div id="the-equation" class="section level2">
+<h2><span class="header-section-number">11.1</span> The Equation</h2>
+<p>Let’s start by describing a scatterplot using a line. Indeed, we can think of the regression equation as an <strong>equation for a scatterplot</strong>.</p>
+<p>First, let’s agree that we won’t encounter a scatterplot where all the points <span class="math inline">\((x_i, y_i)\)</span> fall exactly along a line. As such, we need a notation that allows us to distinguish the line from the observed values.</p>
+<p>We commonly refer to the values along the line as the “fitted values” (or “predicted values” or “predictions” and the observations themselves as the “observed values” or “observations.”</p>
+<p>We use <span class="math inline">\(y_i\)</span> to denote the <span class="math inline">\(i\)</span>th observation of <span class="math inline">\(y\)</span> and use <span class="math inline">\(\hat{y}_i\)</span> to denote the fitted value (usually given <span class="math inline">\(x_i\)</span>).</p>
+<p>We write the equation for the line as <span class="math inline">\(\hat{y} = \alpha + \beta x\)</span> and the fitted values as <span class="math inline">\(\hat{y}_i = \alpha + \beta x_i\)</span>.</p>
+<p>We refer to the intercept <span class="math inline">\(\alpha\)</span> and the slope <span class="math inline">\(\beta\)</span> as <strong>coefficients</strong>.</p>
+<p>We refer to the difference between the observed value <span class="math inline">\(y_i\)</span> and the fitted value <span class="math inline">\(\hat{y}_i = \alpha + \beta x_i\)</span> as the <strong>residual</strong> <span class="math inline">\(r_i = y_i - \hat{y}_i\)</span>.</p>
+<p>Thus, for <em>any</em> <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, we can write <span class="math inline">\(y_i = \alpha + \beta x_i + r_i\)</span> for the observations <span class="math inline">\(i = \{1, 2, ..., n\}\)</span>.</p>
+<p>Notice that we can break each <span class="math inline">\(y_i\)</span> into two pieces components</p>
+<ol style="list-style-type: decimal">
+<li>the linear function of <span class="math inline">\(x_i\)</span>: <span class="math inline">\(\alpha + \beta x_i\)</span></li>
+<li>the residual <span class="math inline">\(r_i\)</span>.</li>
+</ol>
+<p>In short, we can describe any scatterplot using the model <span class="math inline">\(y_i = \alpha + \beta x_i + r_i\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>The black points show the individual observations <span class="math inline">\((x_i, y_i)\)</span>,</li>
+<li>The green line shows the equation <span class="math inline">\(\hat{y} = \alpha + \beta x\)</span>.</li>
+<li>The purple star shows the prediction <span class="math inline">\(\hat{y}_i\)</span> for <span class="math inline">\(x = x_i\)</span>.</li>
+<li>The orange vertical line shows the residual <span class="math inline">\(r_i = y_i - \hat{y}_i\)</span>.</li>
+</ol>
+<p><img src="notes_files/figure-html/unnamed-chunk-150-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Using this generic approach, we can describe <em>any</em> scatterplot using <em>any</em> line. Of course, the line above isn’t a very good line.</p>
+<p>How can we go about finding a <em>good</em> line?</p>
+<p>Before we talk about a good <em>line</em>, let’s talk about a good <em>point</em>. Suppose you have a dataset <span class="math inline">\(y = \{y_1, y_2, ... , y_n\}\)</span> and you want to predict these observations with a single point <span class="math inline">\(\theta\)</span>. It turns out that the <em>average</em> (the one you learned so long ago) is the best predictor of these observations because it minimizes the RMS of the errors (i.e., the deviations from the average).</p>
+</div>
+<div id="the-conditional-average" class="section level2">
+<h2><span class="header-section-number">11.2</span> The Conditional Average</h2>
+<p>Have a look at the scatterplot below. What’s the portfolio share of a party in a coalition government with a seat share of 25%?</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-151-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Your eyes probably immediately begin examining a vertical strip above 25%.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-152-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>You probably estimate the average is a little more than 25%… call it 27%. You can see that the SD is about 10% because you’d need to go out about 10 percentage points above and below the average to grab about 2/3rds of the data.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-153-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Now you’re informed by the data and ready to answer the question.</p>
+<ul>
+<li>Q: What’s the portfolio share of a party in a coalition government with a seat share of 25%?</li>
+<li>A: It’s about 28% give or take 10 percentage points or so.</li>
+</ul>
+<p>Notice that if we break the data into many small windows, we can visually create an average (and an SD) for each. Freedman, Pisani, and Purves (2008) refer to this as a “graph of averages.” Fox (2008) calls this “naive nonparametric regression.” It’s a conceptual tool to help us understand regression.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-154-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>For some datasets, these averages will fall roughly along a line. In that case, we can described the average value of <span class="math inline">\(y\)</span> for each value of <span class="math inline">\(x\)</span>–that is, the <em>conditional</em> average of <span class="math inline">\(y\)</span>–with a line.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-155-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Here’s the takeaway: a “good” line is the conditional average.</p>
+</div>
+<div id="the-best-line" class="section level2">
+<h2><span class="header-section-number">11.3</span> The Best Line</h2>
+<p>So far, we have to results:</p>
+<ol style="list-style-type: decimal">
+<li>The average is the point that minimizes the RMS of the deviations.</li>
+<li>We want a line that captures the conditional average.</li>
+</ol>
+<p>Just as the average minimizes the RMS of the deviations, perhaps we should choose the line that minimizes the RMS of the residuals… that’s exactly what we do.</p>
+<p><strong>We want the pair of coefficients <span class="math inline">\((\hat{\alpha}, \hat{\beta})\)</span> that minimizes the RMS of the residuals or </strong></p>
+<p><span class="math inline">\(\DeclareMathOperator*{\argmin}{arg\,min}\)</span></p>
+<p><span class="math display">\[\begin{equation}
+(\hat{\alpha}, \hat{\beta}) = \displaystyle \argmin_{( \alpha, \, \beta ) \, \in \, \mathbb{R}^2} \sqrt{\frac{r_i^2}{n}}
+\end{equation}\]</span></p>
+<p>Let’s have a quick look at two methods to find the coefficients that minimize the RMS of the residuals.</p>
+<ol style="list-style-type: decimal">
+<li>grid search</li>
+<li>analytical optimization</li>
+</ol>
+<div id="grid-search" class="section level3">
+<h3><span class="header-section-number">11.3.1</span> Grid Search</h3>
+<p>Because we’re looking for the pair <span class="math inline">\((\hat{\alpha}, \hat{\beta})\)</span> that minimize the sum of the RMS residuals, we could simply check lots of different values. In some applications, this is a reasonable optimization routine. (It is not reasonable in the context of regression, where we have much faster and accurate tools.)</p>
+<p>The figure below shows the result of a grid search.</p>
+<ul>
+<li>In the top-left panel, we see the line and the residuals for each intercept-slope pair. The size of the points indicates the residual <em>squared</em>. Notice that some lines make big errors and other lines make small errors.</li>
+<li>In the top-right panel, we see a histogram of the squared residuals.</li>
+<li>In the lower-left panel, each point in the grid shows a intercept-slope pair. The label, color, and size indicate the RMS of the residuals. As we move around the grid, the RMS changes–we’re looking for the smallest.</li>
+<li>In the lower-right panel, the three lines show the evolution of the intercept, slope, and RMS of the residuals, respectively. Again, we’re looking for the pair that produces the smallest RMS of the residuals.</li>
+</ul>
+<p>For this search, the intercept -0.36 and the slope 0.89 produce the smallest RMS of the residuals (of the combinations we considered).</p>
+<p><img src="img/scatterplots/grid-search.gif" /></p>
+</div>
+<div id="analytical-optimization" class="section level3">
+<h3><span class="header-section-number">11.3.2</span> Analytical Optimization</h3>
+<p>In the case of finding the line that minimizes the RMS of the residuals, we have an easy analytical solution. We don’t need a grid search.</p>
+<div id="scalar-form" class="section level4">
+<h4><span class="header-section-number">11.3.2.1</span> Scalar Form</h4>
+<p>Remember that we simply need to minimize the function</p>
+<p><span class="math inline">\(f(\alpha, \beta) = \displaystyle \sqrt{\frac{\sum_{i = 1}^n [y_i - (\alpha + \beta x_i)]^2}{n}}\)</span>.</p>
+<p>This is equivalent to minimizing <span class="math inline">\(h(\alpha, \beta) = \sum_{i = 1}^n(y_i - \alpha - \beta x_i)^2\)</span>. We sometimes refer to this quantity as the SSR or “sum of squared residuals.”</p>
+<p>If you’ve had calculus, you might recognize that we can us calculus to find <span class="math inline">\((\hat{\alpha}, \hat{\beta})\)</span> that minimize the RMS of the residuals. If not, you can skip the calculus part below. However, pay attention to the boxes, which I’m calling “Theorems.”</p>
+<p>To minimize <span class="math inline">\(h(\alpha, \beta)\)</span>, remember that we need to solve for <span class="math inline">\(\frac{\partial h}{\partial \alpha} = 0\)</span> and <span class="math inline">\(\frac{\partial h}{\partial \beta} = 0\)</span> (i.e., the first-order conditions).</p>
+<p>Using the chain rule, we have the partial derivatives</p>
+<p><span class="math inline">\(\frac{\partial h}{\partial \alpha} = \sum_{i = 1}^n [2 \times (y_i - \alpha - \beta x_i) \times (-1)] = -2 \sum_{i = 1}^n(y_i - \alpha + \beta x_i)\)</span></p>
+<p>and</p>
+<p><span class="math inline">\(\frac{\partial h}{\partial \beta} = \sum_{i = 1}^n 2 \times (y_i - \alpha - \beta x_i) \times (-x_i) = -2 \sum_{i = 1}^n(y_i - \alpha - \beta x_i)x_i\)</span></p>
+<p>and the two first-order conditions</p>
+<p><span class="math inline">\(-2 \sum_{i = 1}^n(y_i - \hat{\alpha} + \hat{\beta} x_i) = 0\)</span></p>
+<p>and</p>
+<p><span class="math inline">\(-2 \sum_{i = 1}^n(y_i - \hat{\alpha} + \hat{\beta} x_i)x_i = 0\)</span></p>
+<div id="the-1st-first-order-condition" class="section level5">
+<h5><span class="header-section-number">11.3.2.1.1</span> The 1st First-Order Condition</h5>
+<p><span class="math display">\[\begin{align}
+-2 \sum_{i = 1}^n(y_i - \hat{\alpha} - \hat{\beta} x_i) &amp;= 0 \\
+\sum_{i = 1}^n(y_i - \hat{\alpha} - \hat{\beta} x_i) &amp;= 0 \text{   (divide both sizes by $-2$)} \\
+\sum_{i = 1}^n y_i - \sum_{i = 1}^n \hat{\alpha}  - \sum_{i = 1}^n \hat{\beta} x_i &amp;= 0 \text{   (distribute the sum)} \\
+\sum_{i = 1}^n y_i -  n \hat{\alpha}  - \hat{\beta}\sum_{i = 1}^n  x_i &amp;= 0 \text{   (move constant $\beta$ in front and realize that $\sum_{i = 1}^n \hat{\alpha} = n\hat{\alpha}$)} \\
+\sum_{i = 1}^n y_i &amp; = n \hat{\alpha}  + \hat{\beta}\sum_{i = 1}^n  x_i \text{   (rearrange)} \\
+\frac{\sum_{i = 1}^n y_i}{n} &amp; = \hat{\alpha}  + \hat{\beta} \frac{\sum_{i = 1}^n  x_i}{n} \text{   (divide both sides by $n$)} \\
+\overline{y} &amp; = \hat{\alpha}  + \hat{\beta} \overline{x} \text{   (recognize the average of $y$ and of $x$)} \\
+\end{align}\]</span></p>
+
+<div class="theorem">
+<span id="thm:pt-of-avgs" class="theorem"><strong>Theorem 11.1  </strong></span>The 1st first-order condition implies that the regression line <span class="math inline">\(\hat{y} = \hat{\alpha} + \hat{\beta}x\)</span> equals <span class="math inline">\(\overline{y}\)</span> when <span class="math inline">\(x = \overline{x}\)</span>. Thus, the regression line must go through the point <span class="math inline">\((\overline{x}, \overline{y})\)</span> or “the point of averages”.
+</div>
+
+<p>The figure below shows a regression line that goes through the point of averages.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-156-1.png" width="480" style="display: block; margin: auto;" /></p>
+
+<div class="theorem">
+<span id="thm:1st-order" class="theorem"><strong>Theorem 11.2  </strong></span>We can rearrange the identity <span class="math inline">\(\hat{y} = \hat{\alpha} + \hat{\beta}x\)</span> from Theorem <a href="regression.html#thm:pt-of-avgs">11.1</a> to obtain the identity <span class="math inline">\(\hat{\alpha} = \overline{y} - \hat{\beta}\overline{x}\)</span>
+</div>
+
+</div>
+<div id="the-2nd-first-order-condition" class="section level5">
+<h5><span class="header-section-number">11.3.2.1.2</span> The 2nd First-Order Condition</h5>
+<p>Sometimes, when writing proofs, you obtain a result that’s not particularly interesting, but true and useful later. We refer to these results as “lemmas.” We’ll need the following Lemmas in the subsequent steps.</p>
+
+<div class="lemma">
+<span id="lem:ny" class="lemma"><strong>Lemma 11.1  </strong></span><span class="math inline">\(\sum_{i = i}^n y_i = n\overline{y}\)</span>.
+</div>
+
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-157" class="exercise"><strong>Exercise 11.1  </strong></span>Prove Lemma <a href="regression.html#lem:ny">11.1</a>.
+</div>
+
+
+<div class="lemma">
+<span id="lem:sum-of-dev-prods" class="lemma"><strong>Lemma 11.2  </strong></span><span class="math inline">\(\sum_{i = 1}^n x_i y_i - n \overline{x} \overline{y} = \sum_{i = 1}^n (x_i - \overline{x})(y_i - \overline{y})\)</span>.
+</div>
+
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-158" class="exercise"><strong>Exercise 11.2  </strong></span>Prove Lemma <a href="regression.html#lem:sum-of-dev-prods">11.2</a>.
+</div>
+
+
+<div class="lemma">
+<span id="lem:sum-of-squared-devs" class="lemma"><strong>Lemma 11.3  </strong></span><span class="math inline">\(\sum_{i = 1}^n x_i ^2 - n \overline{x}^2 = \sum_{i = 1}^n (x_i - \overline{x})^2\)</span>.
+</div>
+
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-159" class="exercise"><strong>Exercise 11.3  </strong></span>Prove Lemma <a href="regression.html#lem:sum-of-squared-devs">11.3</a>.
+</div>
+
+<p><span class="math display">\[\begin{align}
+-2 \sum_{i = 1}^n(y_i - \hat{\alpha} - \hat{\beta} x_i)x_i &amp;= 0 \\
+\sum_{i = 1}^n(y_i - \hat{\alpha} - \hat{\beta} x_i)x_i &amp;= 0 \text{   (divide both sides by -2)} \\
+\sum_{i = 1}^n(y_i x_i - \hat{\alpha}x_i - \hat{\beta} x_i^2) &amp;= 0 \text{   (distribute the $x_i$)}
+\end{align}\]</span></p>
+<p>Now we can use use Theorem <a href="regression.html#thm:1st-order">11.2</a> and replace <span class="math inline">\(\hat{\alpha}\)</span> with <span class="math inline">\(\overline{y} - \hat{\beta}\overline{x}\)</span>.</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i = 1}^n(y_i x_i - (\overline{y} - \hat{\beta}\overline{x})x_i - \hat{\beta} x_i^2) &amp;= 0 \text{   (use the identity $\hat{\alpha} = \overline{y} - \hat{\beta}\overline{x}$)} \\
+\sum_{i = 1}^n( x_i y_i - \overline{y} x_i + \hat{\beta}\overline{x} x_i - \hat{\beta} x_i^2) &amp;= 0 \text{   (expand the middle term)} \\
+\sum_{i = 1}^n x_i y_i  - \overline{y} \sum_{i = 1}^n x_i + \hat{\beta}\overline{x} \sum_{i = 1}^n x_i - \hat{\beta} \sum_{i = 1}^n x_i^2 &amp;= 0 \text{   (distribute the sum)}
+\end{align}\]</span></p>
+<p>Now we can use Lemma <a href="regression.html#lem:ny">11.1</a> to replace <span class="math inline">\(\sum_{i = i}^n y_i\)</span> with <span class="math inline">\(n\overline{y}\)</span>.</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i = 1}^n  x_i y_i - n \overline{y} \overline{x} + \hat{\beta}n \overline{x}^2 - \hat{\beta} \sum_{i = 1}^n x_i^2 &amp;= 0 \text{   (use the identity $\sum_{i = i}^n y_i = n\overline{y}$)}\\
+\sum_{i = 1}^n x_i y_i  - n \overline{x} \overline{y}  &amp;= \hat{\beta} \left(\sum_{i = 1}^n x_i^2 - n \overline{x}^2 \right) \text{   (rearrange)}\\
+\hat{\beta} &amp;=\dfrac{\sum_{i = 1}^n x_i y_i - n \overline{x} \overline{y}}{\sum_{i = 1}^n x_i^2 - n \overline{x}^2} \text{   (rearrange)}\\
+\end{align}\]</span></p>
+<p>This final result is correct, but unfamiliar. In order to make sense of this solution, we need to connect this identity to previous results.</p>
+<p>Now we can use Lemmas <a href="regression.html#lem:sum-of-dev-prods">11.2</a> and <a href="regression.html#lem:sum-of-squared-devs">11.3</a> to replace the numerator <span class="math inline">\(\sum_{i = 1}^n x_i y_i - n \overline{x} \overline{y}\)</span> with the more familiar expression <span class="math inline">\(\sum_{i = 1}^n (x_i - \overline{x})(y_i - \overline{y})\)</span> and replace the denominator <span class="math inline">\(\sum_{i = 1}^n x_i ^2 - n \overline{x}^2\)</span> with the more familiar expression <span class="math inline">\(\sum_{i = 1}^n (x_i - \overline{x})^2\)</span>.</p>
+<p><span class="math display">\[\begin{align}
+\hat{\beta} &amp;=\dfrac{\sum_{i = 1}^n (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i = 1}^n (x_i - \overline{x})^2} \\
+\end{align}\]</span></p>
+<p>Denote the SD of <span class="math inline">\(x\)</span> as <span class="math inline">\(\text{SD}_x\)</span> and the the SD of <span class="math inline">\(y\)</span> as <span class="math inline">\(\text{SD}_y\)</span>. Multiply the top and bottom by <span class="math inline">\(\frac{1}{n \times \text{SD}_x^2 \times \text{SD}_y}\)</span> and rearrange strategically.</p>
+<p><span class="math display">\[\begin{align}
+\hat{\beta} &amp;=\frac{\frac{\sum_{i = 1}^n \left(\frac{x_i - \overline{x}}{\text{SD}_x} \right)\left(\frac{y_i - \overline{y}}{\text{SD}_y} \right)}{n} \times \frac{1}{\text{SD}_x}}{ \frac{1}{n \times \text{SD}_x^2 \times \text{SD}_y} \times \sum_{i = 1}^n (x_i - \overline{x})^2} \\
+\end{align}\]</span></p>
+<p>Now we recognize that the left term <span class="math inline">\(\dfrac{\sum_{i = 1}^n \left(\frac{x_i - \overline{x}}{\text{SD}_x} \right)\left(\frac{y_i - \overline{y}}{\text{SD}_y} \right)}{n}\)</span> in the numerator is simply the correlation coefficient <span class="math inline">\(r\)</span> between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p><span class="math display">\[\begin{align}
+\hat{\beta} &amp;=\dfrac{r \times \frac{1}{\text{SD}_x}}{\frac{1}{\text{SD}_x^2 \times \text{SD}_y}\sum_{i = 1}^n \frac{(x_i - \overline{x})^2}{n}} \\
+\end{align}\]</span></p>
+<p>Now we recognize that <span class="math inline">\(\sum_{i = 1}^n \frac{(x_i - \overline{x})^2}{n}\)</span> is almost the <span class="math inline">\(\text{SD}_x\)</span>. Conveniently, it’s <span class="math inline">\(\text{SD}_x^2\)</span>, which allows us to cancel those two terms.</p>
+<p><span class="math display">\[\begin{align}
+\hat{\beta} &amp;=\dfrac{r \times \frac{1}{\text{SD}_x}}{\frac{1}{\text{SD}_y}} \\
+            &amp; r \times \frac{\text{SD}_y}{\text{SD}_x}
+\end{align}\]</span></p>
+<p>This final result clearly connects <span class="math inline">\(\hat{\beta}\)</span> to previous results.</p>
+
+<div class="theorem">
+<span id="thm:2nd-order" class="theorem"><strong>Theorem 11.3  </strong></span><span class="math inline">\(\hat{\beta} = r \times \dfrac{\text{SD of } y}{\text{SD of }x} = \dfrac{\sum_{i = 1}^n (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i = 1}^n (x_i - \overline{x})^2} = \dfrac{\sum_{i = 1}^n x_i y_i - n \overline{x} \overline{y}}{\sum_{i = 1}^n x_i^2 - n \overline{x}^2}\)</span>.
+</div>
+
+<p>In summary, we can obtain the smallest RMS of the residuals with results from Theorems <a href="regression.html#thm:1st-order">11.2</a> and <a href="regression.html#thm:2nd-order">11.3</a>.</p>
+<p><span class="math display">\[\begin{align}
+\hat{\beta} &amp;= r \times \dfrac{\text{SD of } y}{\text{SD of }x} \\
+\hat{\alpha} &amp;= \overline{y} - \hat{\beta}\overline{x}
+\end{align}\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="the-rms-of-the-residuals" class="section level2">
+<h2><span class="header-section-number">11.4</span> The RMS of the Residuals</h2>
+<p>Just like the SD offers a give-or-take number around the average, the “RMS of the residuals.” offers a give-or-take number around the regression line. Sometimes the RMS of the residuals is called the “RMS error (of the regression),” the “standard error of the regression,” or denoted as <span class="math inline">\(\hat{\sigma}\)</span>.</p>
+<p>Indeed, just like the SD is the RMS of the deviations from the average, the RMS of the residuals is the RMS of the deviations from the regression line. <strong>The RMS of the residuals tells us how far typical points fall from the regression line.</strong></p>
+<p>We can compute the RMS of the regression by computing each residual and then taking the root-mean-square. But we can also use the much simpler formula <span class="math inline">\(\sqrt{1 - r^2} \times \text{ SD of }y\)</span>.</p>
+<p>This formula makes sense because <span class="math inline">\(y\)</span> has an SD, but <span class="math inline">\(x\)</span> explains some of that variation. As <span class="math inline">\(r\)</span> increases, <span class="math inline">\(x\)</span> explains more and more of the variation. As <span class="math inline">\(x\)</span> explains more variation, then the RMS of the residuals shrinks away from SD of <span class="math inline">\(y\)</span> toward zero. It turns out that the SD of <span class="math inline">\(y\)</span> shrinks toward zero by a factor of <span class="math inline">\(\sqrt{1 - r^2}\)</span>.</p>
+</div>
+<div id="r2" class="section level2">
+<h2><span class="header-section-number">11.5</span> <span class="math inline">\(R^2\)</span></h2>
+<p>Some authors use the quantity <span class="math inline">\(R^2\)</span> to assess the fit of the regression model. I prefer the RMS of the residuals because it’s on the same scale as <span class="math inline">\(y\)</span>. Also, <span class="math inline">\(R^2\)</span> computes the what fraction of the <em>variance</em> of <span class="math inline">\(y\)</span>, which is the SD squared, is explained by <span class="math inline">\(x\)</span>. I have a hard time making sense of variances, because they are not on the original scale.</p>
+<div id="adequacy-of-a-line" class="section level3">
+<h3><span class="header-section-number">11.5.1</span> Adequacy of a Line</h3>
+<p>In some cases, a line can describe the average value <span class="math inline">\(y\)</span> quite well. In other cases, a line describes the data poorly.</p>
+<p>Remember, the regression line describes the average value of <span class="math inline">\(y\)</span> <em>for different values of <span class="math inline">\(x\)</span></em>. In the figure below, the left panel shows a dataset in which a line does not (and cannot) adequately describe the average values of <span class="math inline">\(y\)</span> for describe low, middle, and high values (at least ad the same time). The right panel shows a data in which a line can adequately describe how the average value of <span class="math inline">\(y\)</span> changes with <span class="math inline">\(x\)</span>. We can see that when <span class="math inline">\(x \approx -2\)</span>, then <span class="math inline">\(y \approx 0\)</span>. Similarly, when <span class="math inline">\(x \approx 0\)</span>, then <span class="math inline">\(y \approx 4\)</span>. A line can describe the average value of <span class="math inline">\(y\)</span> for varying values of <span class="math inline">\(x\)</span> when the average of <span class="math inline">\(y\)</span> changes <em>linearly</em> with <span class="math inline">\(x\)</span>.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-160-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>A line does a great job of describing the relationship between seat shares and portfolio shares in government coalitions.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-161-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>A line poorly describes the relationship between Polity IV’s DEMOC measure and GDP per capita.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-162-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>When we have variable that’s skewed heavily to the right, we can sometimes more easily describe the <em>log</em> of the variable. For this dataset, the line poorly describes the average logged GDP per capita for the various democracy scores.</p>
+<p><img src="notes_files/figure-html/unnamed-chunk-163-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="fitting-regression-models" class="section level2">
+<h2><span class="header-section-number">11.6</span> Fitting Regression Models</h2>
+<p>To fit a regression model in R, we can use the following approach:</p>
+<ol style="list-style-type: decimal">
+<li>Use <code>lm()</code> to fit the model.</li>
+<li>Use <code>coef()</code>, <code>arm::display()</code>, <code>texreg::screenreg()</code>, or <code>summary()</code> to quickly inspect the slope and intercept.</li>
+</ol>
+<div id="geom_smooth" class="section level3">
+<h3><span class="header-section-number">11.6.1</span> <code>geom_smooth()</code></h3>
+<p>In the context of ggplot, we can show the fitted line with <code>geom_smooth()</code>.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="regression.html#cb226-1"></a>gamson &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/gamson.rds&quot;</span>)</span>
+<span id="cb226-2"><a href="regression.html#cb226-2"></a></span>
+<span id="cb226-3"><a href="regression.html#cb226-3"></a><span class="kw">ggplot</span>(gamson, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb226-4"><a href="regression.html#cb226-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb226-5"><a href="regression.html#cb226-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<p><img src="notes_files/figure-html/unnamed-chunk-164-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>By default, <code>geom_smooth()</code> fits a smoothed curve rather than a straight line. There’s nothing wrong with a smoothed curve—sometimes it’s preferable to a straight line. But we don’t understand how to fit a smoothed curve. To us the least-squares fit, we supply the argument <code>method = "lm"</code> to <code>geom_smooth()</code>.</p>
+<p><code>geom_smooth()</code> also includes the uncertainty around the line by default. Notice the grey band around the line, especially in the top-right. We don’t have a clear since of how uncertainty enters the fit, nor do we understand a standard error, so we should not include the uncertainty in the plot (at least for now). To remove the grey band, we supply the argument <code>se = FALSE</code> to <code>geom_smooth()</code>.</p>
+<p>The line <span class="math inline">\(y = x\)</span> is theoretically relevant–that’s the line that indicates a perfectly proportional portfolio distribution. To include it, we can use <code>geom_abline()</code>.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="regression.html#cb227-1"></a><span class="kw">ggplot</span>(gamson, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-2"><a href="regression.html#cb227-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-3"><a href="regression.html#cb227-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-4"><a href="regression.html#cb227-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="notes_files/figure-html/unnamed-chunk-165-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="lm" class="section level3">
+<h3><span class="header-section-number">11.6.2</span> <code>lm()</code></h3>
+<p>The <code>lm()</code> function takes two key arguments.</p>
+<ol style="list-style-type: decimal">
+<li>The first argument is a formula, which is a special type of object in R. It has a left-hand side and a right-hand side, separated by a <code>~</code>. You put the name of the outcome variable <span class="math inline">\(y\)</span> on the LHS and the name of the explanatory variable <span class="math inline">\(x\)</span> on the RHS.</li>
+<li>The second argument is the dataset.</li>
+</ol>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="regression.html#cb228-1"></a>fit &lt;-<span class="st"> </span><span class="kw">lm</span>(portfolio_share <span class="op">~</span><span class="st"> </span>seat_share, <span class="dt">data =</span> gamson)</span></code></pre></div>
+</div>
+<div id="quick-look-at-the-fit" class="section level3">
+<h3><span class="header-section-number">11.6.3</span> Quick Look at the Fit</h3>
+<p>We have several ways to look at the fit. Experiment with <code>coef()</code>, <code>arm::display()</code>, <code>texreg::screenreg()</code>, and <code>summary()</code> to see the differences. For now, we only understand the slope and intercept, so <code>coef()</code> works perfectly.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="regression.html#cb229-1"></a><span class="kw">coef</span>(fit)</span></code></pre></div>
+<pre><code>(Intercept)  seat_share 
+ 0.06913558  0.79158398 </code></pre>
+<p>The <code>coef()</code> function outputs a numeric vector with named entries. The intercept is named <code>(Intercept)</code> and the slope is named after its associated variable.</p>
+<p>To find the RMS of the residuals, do the following:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="regression.html#cb231-1"></a>r &lt;-<span class="st"> </span><span class="kw">residuals</span>(fit)</span>
+<span id="cb231-2"><a href="regression.html#cb231-2"></a><span class="kw">sqrt</span>(<span class="kw">mean</span>(r<span class="op">^</span><span class="dv">2</span>)) <span class="co"># rms of residuals</span></span></code></pre></div>
+<pre><code>[1] 0.06880963</code></pre>
+</div>
+</div>
+<div id="standard-errors-and-p-values" class="section level2">
+<h2><span class="header-section-number">11.7</span> Standard Errors and <em>p</em>-Values</h2>
+<p>Almost all software reports <em>p</em>-values or standard errors by default. These are testing the null hypothesis that the coefficient (slope or intercept) equals zero. You can multiply the standard errors by plus-and-minus two to get a 95% confidence interval.</p>
+<p>The two functions below summarize the fitted model, giving you some quantities you’ve seen and understand and others that you haven’t.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="regression.html#cb233-1"></a>arm<span class="op">::</span><span class="kw">display</span>(fit, <span class="dt">detail =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>lm(formula = portfolio_share ~ seat_share, data = gamson)
+            coef.est coef.se t value Pr(&gt;|t|)
+(Intercept)  0.07     0.00   17.12    0.00   
+seat_share   0.79     0.01   80.81    0.00   
+---
+n = 826, k = 2
+residual sd = 0.07, R-Squared = 0.89</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="regression.html#cb235-1"></a>texreg<span class="op">::</span><span class="kw">screenreg</span>(fit)</span></code></pre></div>
+<pre><code>
+=======================
+             Model 1   
+-----------------------
+(Intercept)    0.07 ***
+              (0.00)   
+seat_share     0.79 ***
+              (0.01)   
+-----------------------
+R^2            0.89    
+Adj. R^2       0.89    
+Num. obs.    826       
+=======================
+*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
+</div>
+<div id="a-warning" class="section level2">
+<h2><span class="header-section-number">11.8</span> A Warning</h2>
+<p>When we simply describe a single set of measurements with a histogram or an average, then we intuitively remain in the world of description. Indeed, making a causal claim requires a comparing factual and counterfactual scenarios. In the case of a single histogram or average we only have one scenario and there is no comparison.</p>
+<p>When we have descriptions of multiple sets of measurements, say the average life expectancy for democracies and the average life expectancy for autocracies, we an easily interpret one scenario as factual and the other as counterfactual. On its face, though, both scenarios are factual. We can comfortably say that democracies have healthier populations than autocracies without claiming that the regime type causes this difference. But it is… oh. so. tempting.</p>
+<p>Regression models, by design, describe an outcome across a range of scenarios. Indeed, a regression model describes how the average value of <span class="math inline">\(y\)</span> changes as <span class="math inline">\(x\)</span> varies. The temptation to treat these neatly arranged scenarios as factual and counterfactual grows even stronger. But unless one makes a strong argument otherwise, <strong>statistical models describe the factual world</strong>.</p>
+<blockquote>
+<p>With few exceptions, statistical data analysis describes the outcomes of real social processes and not the processes themselves. It is therefore important to attend to the descriptive accuracy of statistical models, and to refrain from reifying them. —Fox (2008, p.3)</p>
+</blockquote>
+<p>Note that some methodologists claim that their statistical models can obtain estimates of the causal effects. These models might actually succeed on occasion. However, the researcher should carefully avoid seeing counterfactual worlds from regression models. Usually, credible causal inferences come from careful design in the data collection stage, not from complicated conditioning at the modeling stage.</p>
+</div>
+<div id="review-exercises" class="section level2">
+<h2><span class="header-section-number">11.9</span> Review Exercises</h2>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-170" class="exercise"><strong>Exercise 11.4  </strong></span>Use <code>devtools::install_github("pos5737/pos5737data")</code> to get the latest version of the pos5737 data package. Load the data set <code>anscombe</code> into R with <code>data(anscombe, package = "pos5737data")</code>. Use <code>glimpse(anscombe)</code> to get a quick look at the data. Realize that this one data frame actually contains four different datasets stacked on top of each other and numbered I, II, III, and IV.</p>
+<ol style="list-style-type: decimal">
+<li>Fit a regression model on each “dataset” in the anscombe dataset. To only use a subset of the dataset, you can <code>filter()</code> the dataset before supplying the <code>data</code> to <code>lm()</code> or use can supply the <code>subset</code> argument to <code>lm()</code>. In this case, just supplying <code>subset = dataset == "I"</code> to <code>lm()</code>, for example, is probably easiest. Fit the regression to all four datasets and put the intercept, slope, RMS of the residuals, and number of observations for each regression in a little table. Interpret the results.</li>
+<li>For each of the four regression fits, create a scatterplot of the fitted values versus the residuals. Describe any inadequacies.
+</div></li>
+</ol>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-171" class="exercise"><strong>Exercise 11.5  </strong></span>Use regression to test Clark and Golder’s (2006) theory using the parties dataset. First, create scatterplots between ENEG and ENEP faceted by the electoral system with with the least-squares fit included in each. Then fit three separate regression models. Fit the model <span class="math inline">\(\text{ENEP}_i = \alpha + \beta \text{ENEG}_i + r_i\)</span> for SMD systems, small-magnitude PR systems, and large-magnitude PR systems. (Hint: Use <code>filter()</code> to create three separate data sets–one for each electoral system.)
+</div>
+
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-172" class="exercise"><strong>Exercise 11.6  </strong></span>This continues Exercise <a href="#exr:description-review"><strong>??</strong></a>. Get the economic-model CSV dataset <a href="https://github.com/pos5737/economic-models/blob/master/data/economic-models.csv">from GitHub</a>.</p>
+<ol style="list-style-type: decimal">
+<li>In three separate regressions, use GDP, RDI, and unemployment to explain the incumbent’s margin of victory. Which measure of economic performance best describes incumbents’ vote shares? Hint: Maybe the RMS of the residuals will be helpful?</li>
+<li>Using the best model of the three, which incumbents did much better than the model suggests? Which incumbents did much worse? Hint: Maybe make a scatterplot of your prefered variable and the margin of victory and use <code>geom_label()</code> with the aesthetic <code>label = incumbent_name</code>.
+</div></li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="correlation-coefficient.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-normal-table.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["notes.pdf", "notes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

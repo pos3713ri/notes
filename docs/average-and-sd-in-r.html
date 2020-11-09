@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Average and SD in R | Concepts and Computation: An Introduction to Political Methodology</title>
-  <meta name="description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to first-year PhD students in politial science." />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to undergraduate students in politial science." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Average and SD in R | Concepts and Computation: An Introduction to Political Methodology" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to first-year PhD students in politial science." />
+  <meta property="og:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to undergraduate students in politial science." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Average and SD in R | Concepts and Computation: An Introduction to Political Methodology" />
   
-  <meta name="twitter:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to first-year PhD students in politial science." />
+  <meta name="twitter:description" content="These are my notes for my class introducing the fundamental conceptual and computational tools to undergraduate students in politial science." />
   
 
 <meta name="author" content="Rob Lytle and Carlisle Rainey" />
 
 
-<meta name="date" content="2020-09-20" />
+<meta name="date" content="2020-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,9 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script>
     $(document).ready(function () {
         process_solutions();
@@ -224,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#mean-and-sd"><i class="fa fa-check"></i><b>6.1</b> <code>mean()</code> and <code>sd()</code></a><ul>
 <li class="chapter" data-level="6.1.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#a-note-about-rs-sd-function"><i class="fa fa-check"></i><b>6.1.1</b> A Note About R’s <code>sd()</code> Function</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#other-summaries-1"><i class="fa fa-check"></i><b>6.2</b> Other Summaries</a></li>
+<li class="chapter" data-level="6.2" data-path="average-and-sd.html"><a href="average-and-sd.html#other-summaries"><i class="fa fa-check"></i><b>6.2</b> Other Summaries</a></li>
 <li class="chapter" data-level="6.3" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#data-frame-nuance"><i class="fa fa-check"></i><b>6.3</b> Data Frame Nuance</a></li>
 <li class="chapter" data-level="6.4" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#the-group_bysummarize-workflow"><i class="fa fa-check"></i><b>6.4</b> The <code>group_by()</code>/<code>summarize()</code> Workflow</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#group_by"><i class="fa fa-check"></i><b>6.4.1</b> <code>group_by()</code></a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="average-and-sd-in-r.html"><a href="average-and-sd-in-r.html#geom_line"><i class="fa fa-check"></i><b>6.5</b> <code>geom_line()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="the-normal-model.html"><a href="the-normal-model.html"><i class="fa fa-check"></i><b>7</b> The Normal Model</a><ul>
-<li class="chapter" data-level="7.1" data-path="the-normal-model.html"><a href="the-normal-model.html#the-intuition-1"><i class="fa fa-check"></i><b>7.1</b> The Intuition</a></li>
+<li class="chapter" data-level="7.1" data-path="average-and-sd.html"><a href="average-and-sd.html#the-intuition"><i class="fa fa-check"></i><b>7.1</b> The Intuition</a></li>
 <li class="chapter" data-level="7.2" data-path="the-normal-model.html"><a href="the-normal-model.html#examples"><i class="fa fa-check"></i><b>7.2</b> Examples</a></li>
 <li class="chapter" data-level="7.3" data-path="the-normal-model.html"><a href="the-normal-model.html#the-empirical-rule"><i class="fa fa-check"></i><b>7.3</b> The Empirical Rule</a></li>
 <li class="chapter" data-level="7.4" data-path="the-normal-model.html"><a href="the-normal-model.html#the-normal-approximation"><i class="fa fa-check"></i><b>7.4</b> The Normal Approximation</a></li>
@@ -261,6 +263,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#interpreting"><i class="fa fa-check"></i><b>10.3</b> Interpreting</a></li>
 <li class="chapter" data-level="10.4" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html#example-clark-and-golder-2006"><i class="fa fa-check"></i><b>10.4</b> Example: Clark and Golder (2006)</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>11</b> Regression</a><ul>
+<li class="chapter" data-level="11.1" data-path="regression.html"><a href="regression.html#the-equation"><i class="fa fa-check"></i><b>11.1</b> The Equation</a></li>
+<li class="chapter" data-level="11.2" data-path="regression.html"><a href="regression.html#the-conditional-average"><i class="fa fa-check"></i><b>11.2</b> The Conditional Average</a></li>
+<li class="chapter" data-level="11.3" data-path="regression.html"><a href="regression.html#the-best-line"><i class="fa fa-check"></i><b>11.3</b> The Best Line</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="regression.html"><a href="regression.html#grid-search"><i class="fa fa-check"></i><b>11.3.1</b> Grid Search</a></li>
+<li class="chapter" data-level="11.3.2" data-path="regression.html"><a href="regression.html#analytical-optimization"><i class="fa fa-check"></i><b>11.3.2</b> Analytical Optimization</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="regression.html"><a href="regression.html#the-rms-of-the-residuals"><i class="fa fa-check"></i><b>11.4</b> The RMS of the Residuals</a></li>
+<li class="chapter" data-level="11.5" data-path="regression.html"><a href="regression.html#r2"><i class="fa fa-check"></i><b>11.5</b> <span class="math inline">\(R^2\)</span></a><ul>
+<li class="chapter" data-level="11.5.1" data-path="regression.html"><a href="regression.html#adequacy-of-a-line"><i class="fa fa-check"></i><b>11.5.1</b> Adequacy of a Line</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="regression.html"><a href="regression.html#fitting-regression-models"><i class="fa fa-check"></i><b>11.6</b> Fitting Regression Models</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="regression.html"><a href="regression.html#geom_smooth"><i class="fa fa-check"></i><b>11.6.1</b> <code>geom_smooth()</code></a></li>
+<li class="chapter" data-level="11.6.2" data-path="regression.html"><a href="regression.html#lm"><i class="fa fa-check"></i><b>11.6.2</b> <code>lm()</code></a></li>
+<li class="chapter" data-level="11.6.3" data-path="regression.html"><a href="regression.html#quick-look-at-the-fit"><i class="fa fa-check"></i><b>11.6.3</b> Quick Look at the Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="regression.html"><a href="regression.html#standard-errors-and-p-values"><i class="fa fa-check"></i><b>11.7</b> Standard Errors and <em>p</em>-Values</a></li>
+<li class="chapter" data-level="11.8" data-path="regression.html"><a href="regression.html#a-warning"><i class="fa fa-check"></i><b>11.8</b> A Warning</a></li>
+<li class="chapter" data-level="11.9" data-path="regression.html"><a href="regression.html#review-exercises"><i class="fa fa-check"></i><b>11.9</b> Review Exercises</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-normal-table.html"><a href="appendix-a-normal-table.html"><i class="fa fa-check"></i><b>A</b> Appendix: A Normal Table</a></li>
@@ -293,129 +315,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mean-and-sd" class="section level2">
 <h2><span class="header-section-number">6.1</span> <code>mean()</code> and <code>sd()</code></h2>
 <p>If we have a vector of data, we can easily calculate the average and SD in R using the <code>mean()</code> and <code>sd()</code> functions in R. (Note that the <code>sd()</code> function uses a slightly different formula, but the difference usually isn’t important in practice.)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="average-and-sd-in-r.html#cb1-1"></a><span class="co"># create variable x = {1, 2, 3, 4, 5}</span></span>
-<span id="cb1-2"><a href="average-and-sd-in-r.html#cb1-2"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb1-3"><a href="average-and-sd-in-r.html#cb1-3"></a></span>
-<span id="cb1-4"><a href="average-and-sd-in-r.html#cb1-4"></a><span class="co"># compute two-number summary</span></span>
-<span id="cb1-5"><a href="average-and-sd-in-r.html#cb1-5"></a><span class="kw">mean</span>(x)  <span class="co"># average</span></span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="average-and-sd-in-r.html#cb144-1"></a><span class="co"># create variable x = {1, 2, 3, 4, 5}</span></span>
+<span id="cb144-2"><a href="average-and-sd-in-r.html#cb144-2"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb144-3"><a href="average-and-sd-in-r.html#cb144-3"></a></span>
+<span id="cb144-4"><a href="average-and-sd-in-r.html#cb144-4"></a><span class="co"># compute two-number summary</span></span>
+<span id="cb144-5"><a href="average-and-sd-in-r.html#cb144-5"></a><span class="kw">mean</span>(x)  <span class="co"># average</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="average-and-sd-in-r.html#cb3-1"></a><span class="kw">sd</span>(x) <span class="co"># SD; see note below</span></span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="average-and-sd-in-r.html#cb146-1"></a><span class="kw">sd</span>(x) <span class="co"># SD; see note below</span></span></code></pre></div>
 <pre><code>## [1] 1.581139</code></pre>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-3" class="exercise"><strong>Exercise 6.1  </strong></span>In R, create the vector {1, 2, 2, 3, 3, 3, 2, 2, 1} and find the average and SD. Compare the SD from R to the SD using the RMS of the deviations formula we learned in the previous chapter.
+<span id="exr:unnamed-chunk-67" class="exercise"><strong>Exercise 6.1  </strong></span>In R, create the vector {1, 2, 2, 3, 3, 3, 2, 2, 1} and find the average and SD. Compare the SD from R to the SD using the RMS of the deviations formula we learned in the previous chapter.
 </div>
 
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-4" class="exercise"><strong>Exercise 6.2  </strong></span>In R, create the vector {2, 1, ?, 1, 4}. Here, “?” represents a missing value (e.g., perhaps a survey respondent refused to reveal their income to an interviewer). Use R to find the average and SD. You might find helpful to supply the argument <code>na.rm = TRUE</code> to each function (the default is <code>na.rm = FALSE</code>). How does this argument alter the calculations? Does the default beahvior make sense?
+<span id="exr:unnamed-chunk-68" class="exercise"><strong>Exercise 6.2  </strong></span>In R, create the vector {2, 1, ?, 1, 4}. Here, “?” represents a missing value (e.g., perhaps a survey respondent refused to reveal their income to an interviewer). Use R to find the average and SD. You might find helpful to supply the argument <code>na.rm = TRUE</code> to each function (the default is <code>na.rm = FALSE</code>). How does this argument alter the calculations? Does the default beahvior make sense?
 </div>
 
 <div id="a-note-about-rs-sd-function" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> A Note About R’s <code>sd()</code> Function</h3>
 <p>For reasons I don’t want to deal with now, R uses the formula <span class="math inline">\(SD = \sqrt{\dfrac{(x_i - \text{avg}(X))^2}{n - 1}}\)</span> rather than <span class="math inline">\(\sqrt{\dfrac{(x_i - \text{avg}(X))^2}{n}}\)</span>. At the “M” stage of RMS, the <code>sd()</code> function divides by <em>one less than the number of observations</em> (or <span class="math inline">\(n - 1\)</span>) rather than just the <em>number of observations</em> (<span class="math inline">\(n\)</span>). In fairness to the software developers, the “one less” approach is more common, but is connected to ideas we’ll learn later in the class. For now, just realize that there are two ways to compute the SD and that R’s SD will be slightly larger than the SD with my formula. Importantly, the difference will be tiny in datasets with a typical number of observations.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="average-and-sd-in-r.html#cb5-1"></a><span class="co"># illustrating the difference in R&#39;s sd() formula</span></span>
-<span id="cb5-2"><a href="average-and-sd-in-r.html#cb5-2"></a></span>
-<span id="cb5-3"><a href="average-and-sd-in-r.html#cb5-3"></a><span class="co"># R&#39;s method (see above)</span></span>
-<span id="cb5-4"><a href="average-and-sd-in-r.html#cb5-4"></a></span>
-<span id="cb5-5"><a href="average-and-sd-in-r.html#cb5-5"></a><span class="co"># our method</span></span>
-<span id="cb5-6"><a href="average-and-sd-in-r.html#cb5-6"></a>deviations &lt;-<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x)  <span class="co"># compute the deviations from the average</span></span>
-<span id="cb5-7"><a href="average-and-sd-in-r.html#cb5-7"></a></span>
-<span id="cb5-8"><a href="average-and-sd-in-r.html#cb5-8"></a>s &lt;-<span class="st"> </span>deviations<span class="op">^</span><span class="dv">2</span>          <span class="co"># square: the &quot;s&quot; in RMS of deviations      </span></span>
-<span id="cb5-9"><a href="average-and-sd-in-r.html#cb5-9"></a>m &lt;-<span class="st"> </span><span class="kw">mean</span>(s)               <span class="co"># mean: the &quot;m&quot; in RMS of deviations</span></span>
-<span id="cb5-10"><a href="average-and-sd-in-r.html#cb5-10"></a>r &lt;-<span class="st"> </span><span class="kw">sqrt</span>(m)              <span class="co"># root: the &quot;r&quot; in RMS of deviations</span></span>
-<span id="cb5-11"><a href="average-and-sd-in-r.html#cb5-11"></a></span>
-<span id="cb5-12"><a href="average-and-sd-in-r.html#cb5-12"></a><span class="kw">print</span>(r)  <span class="co"># RMS of deviations = SD</span></span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="average-and-sd-in-r.html#cb148-1"></a><span class="co"># illustrating the difference in R&#39;s sd() formula</span></span>
+<span id="cb148-2"><a href="average-and-sd-in-r.html#cb148-2"></a></span>
+<span id="cb148-3"><a href="average-and-sd-in-r.html#cb148-3"></a><span class="co"># R&#39;s method (see above)</span></span>
+<span id="cb148-4"><a href="average-and-sd-in-r.html#cb148-4"></a></span>
+<span id="cb148-5"><a href="average-and-sd-in-r.html#cb148-5"></a><span class="co"># our method</span></span>
+<span id="cb148-6"><a href="average-and-sd-in-r.html#cb148-6"></a>deviations &lt;-<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x)  <span class="co"># compute the deviations from the average</span></span>
+<span id="cb148-7"><a href="average-and-sd-in-r.html#cb148-7"></a></span>
+<span id="cb148-8"><a href="average-and-sd-in-r.html#cb148-8"></a>s &lt;-<span class="st"> </span>deviations<span class="op">^</span><span class="dv">2</span>          <span class="co"># square: the &quot;s&quot; in RMS of deviations      </span></span>
+<span id="cb148-9"><a href="average-and-sd-in-r.html#cb148-9"></a>m &lt;-<span class="st"> </span><span class="kw">mean</span>(s)               <span class="co"># mean: the &quot;m&quot; in RMS of deviations</span></span>
+<span id="cb148-10"><a href="average-and-sd-in-r.html#cb148-10"></a>r &lt;-<span class="st"> </span><span class="kw">sqrt</span>(m)              <span class="co"># root: the &quot;r&quot; in RMS of deviations</span></span>
+<span id="cb148-11"><a href="average-and-sd-in-r.html#cb148-11"></a></span>
+<span id="cb148-12"><a href="average-and-sd-in-r.html#cb148-12"></a><span class="kw">print</span>(r)  <span class="co"># RMS of deviations = SD</span></span></code></pre></div>
 <pre><code>## [1] 1.414214</code></pre>
 <p>For this small dataset, R’s method (divide by <span class="math inline">\(n - 1\)</span> at the <em>M</em>-step) gives an answer of 1.58. Our method (divide by <span class="math inline">\(n\)</span> at the <em>m</em>-step, the way we usually would for an average) gives an answer of 1.41.</p>
 </div>
 </div>
-<div id="other-summaries-1" class="section level2">
+<div id="other-summaries" class="section level2">
 <h2><span class="header-section-number">6.2</span> Other Summaries</h2>
 <p>We can also use other obviously-named functions to compute the other summaries from the previous chapter. The only tricky part is that you must supply the percentiles you want as a proportion to the <code>prob</code> argument for the <code>quantile()</code> function.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="average-and-sd-in-r.html#cb7-1"></a><span class="co"># compute five-number summary</span></span>
-<span id="cb7-2"><a href="average-and-sd-in-r.html#cb7-2"></a><span class="kw">min</span>(x)                    <span class="co"># minimum</span></span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="average-and-sd-in-r.html#cb150-1"></a><span class="co"># compute five-number summary</span></span>
+<span id="cb150-2"><a href="average-and-sd-in-r.html#cb150-2"></a><span class="kw">min</span>(x)                    <span class="co"># minimum</span></span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="average-and-sd-in-r.html#cb9-1"></a><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="fl">0.25</span>)  <span class="co"># 25th percentile</span></span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="average-and-sd-in-r.html#cb152-1"></a><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="fl">0.25</span>)  <span class="co"># 25th percentile</span></span></code></pre></div>
 <pre><code>## 25% 
 ##   2</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="average-and-sd-in-r.html#cb11-1"></a><span class="kw">median</span>(x)                 <span class="co"># median</span></span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="average-and-sd-in-r.html#cb154-1"></a><span class="kw">median</span>(x)                 <span class="co"># median</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="average-and-sd-in-r.html#cb13-1"></a><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="fl">0.75</span>)  <span class="co"># 75th percentile</span></span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="average-and-sd-in-r.html#cb156-1"></a><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="fl">0.75</span>)  <span class="co"># 75th percentile</span></span></code></pre></div>
 <pre><code>## 75% 
 ##   4</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="average-and-sd-in-r.html#cb15-1"></a><span class="kw">max</span>(x)                    <span class="co"># maximum</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="average-and-sd-in-r.html#cb158-1"></a><span class="kw">max</span>(x)                    <span class="co"># maximum</span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="average-and-sd-in-r.html#cb17-1"></a><span class="co"># all at once</span></span>
-<span id="cb17-2"><a href="average-and-sd-in-r.html#cb17-2"></a><span class="kw">fivenum</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="average-and-sd-in-r.html#cb160-1"></a><span class="co"># all at once</span></span>
+<span id="cb160-2"><a href="average-and-sd-in-r.html#cb160-2"></a><span class="kw">fivenum</span>(x)</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="average-and-sd-in-r.html#cb19-1"></a><span class="co"># alternatively, but with average included</span></span>
-<span id="cb19-2"><a href="average-and-sd-in-r.html#cb19-2"></a><span class="kw">summary</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="average-and-sd-in-r.html#cb162-1"></a><span class="co"># alternatively, but with average included</span></span>
+<span id="cb162-2"><a href="average-and-sd-in-r.html#cb162-2"></a><span class="kw">summary</span>(x)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##       1       2       3       3       4       5</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="average-and-sd-in-r.html#cb21-1"></a><span class="co"># interquartile range</span></span>
-<span id="cb21-2"><a href="average-and-sd-in-r.html#cb21-2"></a><span class="kw">IQR</span>(x)  <span class="co"># note that IQR is all caps</span></span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="average-and-sd-in-r.html#cb164-1"></a><span class="co"># interquartile range</span></span>
+<span id="cb164-2"><a href="average-and-sd-in-r.html#cb164-2"></a><span class="kw">IQR</span>(x)  <span class="co"># note that IQR is all caps</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-7" class="exercise"><strong>Exercise 6.3  </strong></span>In R, create the vector {1, 2, 2, 3, 3, 3, 2, 2, 1} and find each component of the five-number summary separately. Then using the <code>fivenum()</code> and <code>summary()</code> functions. Compute the interquartile range.
+<span id="exr:unnamed-chunk-71" class="exercise"><strong>Exercise 6.3  </strong></span>In R, create the vector {1, 2, 2, 3, 3, 3, 2, 2, 1} and find each component of the five-number summary separately. Then using the <code>fivenum()</code> and <code>summary()</code> functions. Compute the interquartile range.
 </div>
 
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-8" class="exercise"><strong>Exercise 6.4  </strong></span>(Continued from a previous exercise.) In R, create the vector {2, 1, ?, 1, 4}. Here, “?” represents a missing value (e.g., perhaps a survey respondent refused to reveal their income to an interviewer). Use R to find the each component of the five-number summary separately. Experiment with supplying the argument <code>na.rm = FALSE</code> (the default) and <code>na.rm = TRUE</code>. How does this argument alter the calculations? Does the default beahvior make sense? Now try the <code>fivenum()</code> and <code>summary()</code> function without supplying <code>na.rm = TRUE</code>. Does the default behavior differ?
+<span id="exr:unnamed-chunk-72" class="exercise"><strong>Exercise 6.4  </strong></span>(Continued from a previous exercise.) In R, create the vector {2, 1, ?, 1, 4}. Here, “?” represents a missing value (e.g., perhaps a survey respondent refused to reveal their income to an interviewer). Use R to find the each component of the five-number summary separately. Experiment with supplying the argument <code>na.rm = FALSE</code> (the default) and <code>na.rm = TRUE</code>. How does this argument alter the calculations? Does the default beahvior make sense? Now try the <code>fivenum()</code> and <code>summary()</code> function without supplying <code>na.rm = TRUE</code>. Does the default behavior differ?
 </div>
 
 </div>
 <div id="data-frame-nuance" class="section level2">
 <h2><span class="header-section-number">6.3</span> Data Frame Nuance</h2>
 <p>We can compute on variables in data frames using the <code>data$variable</code> syntax we learned earlier in the semester. If the vector (or “variable” or “collection of numbers”) that we want to use is contained in a data frame, then we need to remember to use the <code>data$variable</code> syntax to give R permission to use that variable.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="average-and-sd-in-r.html#cb23-1"></a><span class="co"># load packages</span></span>
-<span id="cb23-2"><a href="average-and-sd-in-r.html#cb23-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb23-3"><a href="average-and-sd-in-r.html#cb23-3"></a></span>
-<span id="cb23-4"><a href="average-and-sd-in-r.html#cb23-4"></a><span class="co"># load nominate data</span></span>
-<span id="cb23-5"><a href="average-and-sd-in-r.html#cb23-5"></a>nominate_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/nominate.rds&quot;</span>) </span>
-<span id="cb23-6"><a href="average-and-sd-in-r.html#cb23-6"></a></span>
-<span id="cb23-7"><a href="average-and-sd-in-r.html#cb23-7"></a><span class="co"># compute summaries on variable &quot;ideology&quot; in the data frame &quot;nominate_df&quot;</span></span>
-<span id="cb23-8"><a href="average-and-sd-in-r.html#cb23-8"></a></span>
-<span id="cb23-9"><a href="average-and-sd-in-r.html#cb23-9"></a><span class="co">## compute two-number summary, without removing NA values</span></span>
-<span id="cb23-10"><a href="average-and-sd-in-r.html#cb23-10"></a><span class="kw">mean</span>(nominate_df<span class="op">$</span>ideology)  <span class="co"># average</span></span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="average-and-sd-in-r.html#cb166-1"></a><span class="co"># load packages</span></span>
+<span id="cb166-2"><a href="average-and-sd-in-r.html#cb166-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb166-3"><a href="average-and-sd-in-r.html#cb166-3"></a></span>
+<span id="cb166-4"><a href="average-and-sd-in-r.html#cb166-4"></a><span class="co"># load nominate data</span></span>
+<span id="cb166-5"><a href="average-and-sd-in-r.html#cb166-5"></a>nominate_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/nominate.rds&quot;</span>) </span>
+<span id="cb166-6"><a href="average-and-sd-in-r.html#cb166-6"></a></span>
+<span id="cb166-7"><a href="average-and-sd-in-r.html#cb166-7"></a><span class="co"># compute summaries on variable &quot;ideology&quot; in the data frame &quot;nominate_df&quot;</span></span>
+<span id="cb166-8"><a href="average-and-sd-in-r.html#cb166-8"></a></span>
+<span id="cb166-9"><a href="average-and-sd-in-r.html#cb166-9"></a><span class="co">## compute two-number summary, without removing NA values</span></span>
+<span id="cb166-10"><a href="average-and-sd-in-r.html#cb166-10"></a><span class="kw">mean</span>(nominate_df<span class="op">$</span>ideology)  <span class="co"># average</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="average-and-sd-in-r.html#cb25-1"></a><span class="kw">sd</span>(nominate_df<span class="op">$</span>ideology)    <span class="co"># SD</span></span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="average-and-sd-in-r.html#cb168-1"></a><span class="kw">sd</span>(nominate_df<span class="op">$</span>ideology)    <span class="co"># SD</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>We run into an issue with the <code>NA</code> values. Because the ideology score is missing for one representative who never cast a vote, we cannot compute the average, which requires us to sum <em>all</em> the observations. If we don’t know all the values, then we don’t know the sum.</p>
 <p>As a quick fix, we can just ignore the missing values. We can tell R to remove the <code>NA</code> values before computing each statistic using the <code>na.rm = TRUE</code> argument.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="average-and-sd-in-r.html#cb27-1"></a><span class="co">## compute two-number summary, without removing NA values</span></span>
-<span id="cb27-2"><a href="average-and-sd-in-r.html#cb27-2"></a><span class="kw">mean</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># average</span></span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="average-and-sd-in-r.html#cb170-1"></a><span class="co">## compute two-number summary, without removing NA values</span></span>
+<span id="cb170-2"><a href="average-and-sd-in-r.html#cb170-2"></a><span class="kw">mean</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># average</span></span></code></pre></div>
 <pre><code>## [1] 0.02323167</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="average-and-sd-in-r.html#cb29-1"></a><span class="kw">sd</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)    <span class="co"># SD</span></span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="average-and-sd-in-r.html#cb172-1"></a><span class="kw">sd</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)    <span class="co"># SD</span></span></code></pre></div>
 <pre><code>## [1] 0.4183598</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="average-and-sd-in-r.html#cb31-1"></a><span class="co">## compute five-number summary</span></span>
-<span id="cb31-2"><a href="average-and-sd-in-r.html#cb31-2"></a><span class="kw">min</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)                    <span class="co"># minimum</span></span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="average-and-sd-in-r.html#cb174-1"></a><span class="co">## compute five-number summary</span></span>
+<span id="cb174-2"><a href="average-and-sd-in-r.html#cb174-2"></a><span class="kw">min</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)                    <span class="co"># minimum</span></span></code></pre></div>
 <pre><code>## [1] -0.766</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="average-and-sd-in-r.html#cb33-1"></a><span class="kw">quantile</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">prob =</span> <span class="fl">0.25</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># 25th percentile</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="average-and-sd-in-r.html#cb176-1"></a><span class="kw">quantile</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">prob =</span> <span class="fl">0.25</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># 25th percentile</span></span></code></pre></div>
 <pre><code>##    25% 
 ## -0.378</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="average-and-sd-in-r.html#cb35-1"></a><span class="kw">median</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)                 <span class="co"># median</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="average-and-sd-in-r.html#cb178-1"></a><span class="kw">median</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)                 <span class="co"># median</span></span></code></pre></div>
 <pre><code>## [1] -0.038</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="average-and-sd-in-r.html#cb37-1"></a><span class="kw">quantile</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">prob =</span> <span class="fl">0.75</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># 75th percentile</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="average-and-sd-in-r.html#cb180-1"></a><span class="kw">quantile</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">prob =</span> <span class="fl">0.75</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># 75th percentile</span></span></code></pre></div>
 <pre><code>##   75% 
 ## 0.405</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="average-and-sd-in-r.html#cb39-1"></a><span class="kw">max</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)                    <span class="co"># maximum</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="average-and-sd-in-r.html#cb182-1"></a><span class="kw">max</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)                    <span class="co"># maximum</span></span></code></pre></div>
 <pre><code>## [1] 0.939</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="average-and-sd-in-r.html#cb41-1"></a><span class="co">## all at once</span></span>
-<span id="cb41-2"><a href="average-and-sd-in-r.html#cb41-2"></a><span class="kw">fivenum</span>(nominate_df<span class="op">$</span>ideology)  <span class="co"># this function drops NA values by default</span></span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="average-and-sd-in-r.html#cb184-1"></a><span class="co">## all at once</span></span>
+<span id="cb184-2"><a href="average-and-sd-in-r.html#cb184-2"></a><span class="kw">fivenum</span>(nominate_df<span class="op">$</span>ideology)  <span class="co"># this function drops NA values by default</span></span></code></pre></div>
 <pre><code>## [1] -0.766 -0.378 -0.038  0.405  0.939</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="average-and-sd-in-r.html#cb43-1"></a><span class="co">## alternatively, but with average included</span></span>
-<span id="cb43-2"><a href="average-and-sd-in-r.html#cb43-2"></a><span class="kw">summary</span>(nominate_df<span class="op">$</span>ideology)  <span class="co"># this function also drops NA values by default</span></span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="average-and-sd-in-r.html#cb186-1"></a><span class="co">## alternatively, but with average included</span></span>
+<span id="cb186-2"><a href="average-and-sd-in-r.html#cb186-2"></a><span class="kw">summary</span>(nominate_df<span class="op">$</span>ideology)  <span class="co"># this function also drops NA values by default</span></span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
 ## -0.76600 -0.37800 -0.03800  0.02323  0.40500  0.93900        1</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="average-and-sd-in-r.html#cb45-1"></a><span class="co">## interquartile range</span></span>
-<span id="cb45-2"><a href="average-and-sd-in-r.html#cb45-2"></a><span class="kw">IQR</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># note that IQR is all caps</span></span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="average-and-sd-in-r.html#cb188-1"></a><span class="co">## interquartile range</span></span>
+<span id="cb188-2"><a href="average-and-sd-in-r.html#cb188-2"></a><span class="kw">IQR</span>(nominate_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co"># note that IQR is all caps</span></span></code></pre></div>
 <pre><code>## [1] 0.783</code></pre>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-11" class="exercise"><strong>Exercise 6.5  </strong></span>Load the dataset <code>health.rds</code> and compute the two-number and five-number summaries (all separately) for the variable <code>percent_uninsured</code>.
+<span id="exr:unnamed-chunk-75" class="exercise"><strong>Exercise 6.5  </strong></span>Load the dataset <code>health.rds</code> and compute the two-number and five-number summaries (all separately) for the variable <code>percent_uninsured</code>.
 </div>
 
 </div>
@@ -424,29 +446,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>mean()</code>, <code>sd()</code>, and other functions above work nicely for computing these summaries using all the values of a variable.</p>
 <p>But in most cases, we are interested in comparing the the average (or another summary) across groups. We usually want to compute the averages for men and women, the average for each of the 50 U.S. states, or the average for each party in each congress, for example.</p>
 <p>Let’s take a close look at the nominate dataset.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="average-and-sd-in-r.html#cb47-1"></a><span class="co"># load packages</span></span>
-<span id="cb47-2"><a href="average-and-sd-in-r.html#cb47-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb47-3"><a href="average-and-sd-in-r.html#cb47-3"></a></span>
-<span id="cb47-4"><a href="average-and-sd-in-r.html#cb47-4"></a><span class="co"># load nominate data</span></span>
-<span id="cb47-5"><a href="average-and-sd-in-r.html#cb47-5"></a>nominate_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/nominate.rds&quot;</span>) </span>
-<span id="cb47-6"><a href="average-and-sd-in-r.html#cb47-6"></a></span>
-<span id="cb47-7"><a href="average-and-sd-in-r.html#cb47-7"></a><span class="co"># quick look</span></span>
-<span id="cb47-8"><a href="average-and-sd-in-r.html#cb47-8"></a><span class="kw">glimpse</span>(nominate_df)</span></code></pre></div>
-<pre><code>## Observations: 7,080
-## Variables: 7
-## $ congress &lt;int&gt; 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, …
-## $ chamber  &lt;chr&gt; &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;…
-## $ state    &lt;chr&gt; &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AK&quot;, &quot;AZ&quot;, &quot;…
-## $ district &lt;int&gt; 2, 4, 3, 5, 6, 1, 7, 1, 2, 3, 5, 4, 1, 3, 1, 4, 2, 36, …
-## $ party    &lt;fct&gt; Republican, Democrat, Democrat, Democrat, Democrat, Rep…
-## $ name     &lt;chr&gt; &quot;DICKINSON, William Louis&quot;, &quot;BEVILL, Tom&quot;, &quot;NICHOLS, Wi…
-## $ ideology &lt;dbl&gt; 0.398, -0.213, -0.042, -0.175, -0.060, 0.373, -0.085, 0…</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="average-and-sd-in-r.html#cb190-1"></a><span class="co"># load packages</span></span>
+<span id="cb190-2"><a href="average-and-sd-in-r.html#cb190-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb190-3"><a href="average-and-sd-in-r.html#cb190-3"></a></span>
+<span id="cb190-4"><a href="average-and-sd-in-r.html#cb190-4"></a><span class="co"># load nominate data</span></span>
+<span id="cb190-5"><a href="average-and-sd-in-r.html#cb190-5"></a>nominate_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/nominate.rds&quot;</span>) </span>
+<span id="cb190-6"><a href="average-and-sd-in-r.html#cb190-6"></a></span>
+<span id="cb190-7"><a href="average-and-sd-in-r.html#cb190-7"></a><span class="co"># quick look</span></span>
+<span id="cb190-8"><a href="average-and-sd-in-r.html#cb190-8"></a><span class="kw">glimpse</span>(nominate_df)</span></code></pre></div>
+<pre><code>## Rows: 7,080
+## Columns: 7
+## $ congress &lt;int&gt; 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, …
+## $ chamber  &lt;chr&gt; &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House…
+## $ state    &lt;chr&gt; &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AK&quot;, &quot;AZ&quot;, &quot;AZ&quot;, …
+## $ district &lt;int&gt; 2, 4, 3, 5, 6, 1, 7, 1, 2, 3, 5, 4, 1, 3, 1, 4, 2, 36, 10, 2…
+## $ party    &lt;fct&gt; Republican, Democrat, Democrat, Democrat, Democrat, Republic…
+## $ name     &lt;chr&gt; &quot;DICKINSON, William Louis&quot;, &quot;BEVILL, Tom&quot;, &quot;NICHOLS, William…
+## $ ideology &lt;dbl&gt; 0.398, -0.213, -0.042, -0.175, -0.060, 0.373, -0.085, 0.279,…</code></pre>
 <p>For these data, we might want to know the average ideology for Republicans and Democrats. We could do it the hard way, using <code>filter()</code> to create separate datasets for Republicans and Democrats.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="average-and-sd-in-r.html#cb49-1"></a><span class="co"># create a data frame with only republicans</span></span>
-<span id="cb49-2"><a href="average-and-sd-in-r.html#cb49-2"></a>rep_df &lt;-<span class="st"> </span><span class="kw">filter</span>(nominate_df, party <span class="op">==</span><span class="st"> &quot;Republican&quot;</span>) </span>
-<span id="cb49-3"><a href="average-and-sd-in-r.html#cb49-3"></a></span>
-<span id="cb49-4"><a href="average-and-sd-in-r.html#cb49-4"></a><span class="co"># compute average</span></span>
-<span id="cb49-5"><a href="average-and-sd-in-r.html#cb49-5"></a><span class="kw">mean</span>(rep_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="average-and-sd-in-r.html#cb192-1"></a><span class="co"># create a data frame with only republicans</span></span>
+<span id="cb192-2"><a href="average-and-sd-in-r.html#cb192-2"></a>rep_df &lt;-<span class="st"> </span><span class="kw">filter</span>(nominate_df, party <span class="op">==</span><span class="st"> &quot;Republican&quot;</span>) </span>
+<span id="cb192-3"><a href="average-and-sd-in-r.html#cb192-3"></a></span>
+<span id="cb192-4"><a href="average-and-sd-in-r.html#cb192-4"></a><span class="co"># compute average</span></span>
+<span id="cb192-5"><a href="average-and-sd-in-r.html#cb192-5"></a><span class="kw">mean</span>(rep_df<span class="op">$</span>ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.4213385</code></pre>
 <p>But this is tedious, especially if we wanted to do it by party <em>and</em> Congress. That would be two parties and 16 Congresses–32 separate datasets to create and compute the average with.</p>
 <p>Much like faceting allows us to draw lots of plots for different subsets of the data, the <code>group_by()</code>/<code>summarize()</code> workflow allows us to do the same thing for averages (or other summaries).</p>
@@ -454,46 +476,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="group_by" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> <code>group_by()</code></h3>
 <p><code>group_by()</code> defines groups in the data frame. The first argument is the data frame to group. The remaining arguments are the grouping variables. You can think if the groups as a footnote at the bottom of the data set that just mentions the variables that define the groups of interest.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="average-and-sd-in-r.html#cb51-1"></a><span class="co"># group the data frame by party and congress</span></span>
-<span id="cb51-2"><a href="average-and-sd-in-r.html#cb51-2"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(nominate_df, party, congress)</span>
-<span id="cb51-3"><a href="average-and-sd-in-r.html#cb51-3"></a></span>
-<span id="cb51-4"><a href="average-and-sd-in-r.html#cb51-4"></a><span class="co"># quick look at the grouped data frame; notice the groups</span></span>
-<span id="cb51-5"><a href="average-and-sd-in-r.html#cb51-5"></a><span class="kw">glimpse</span>(grouped_df)</span></code></pre></div>
-<pre><code>## Observations: 7,080
-## Variables: 7
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="average-and-sd-in-r.html#cb194-1"></a><span class="co"># group the data frame by party and congress</span></span>
+<span id="cb194-2"><a href="average-and-sd-in-r.html#cb194-2"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(nominate_df, party, congress)</span>
+<span id="cb194-3"><a href="average-and-sd-in-r.html#cb194-3"></a></span>
+<span id="cb194-4"><a href="average-and-sd-in-r.html#cb194-4"></a><span class="co"># quick look at the grouped data frame; notice the groups</span></span>
+<span id="cb194-5"><a href="average-and-sd-in-r.html#cb194-5"></a><span class="kw">glimpse</span>(grouped_df)</span></code></pre></div>
+<pre><code>## Rows: 7,080
+## Columns: 7
 ## Groups: party, congress [32]
-## $ congress &lt;int&gt; 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, …
-## $ chamber  &lt;chr&gt; &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;…
-## $ state    &lt;chr&gt; &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AK&quot;, &quot;AZ&quot;, &quot;…
-## $ district &lt;int&gt; 2, 4, 3, 5, 6, 1, 7, 1, 2, 3, 5, 4, 1, 3, 1, 4, 2, 36, …
-## $ party    &lt;fct&gt; Republican, Democrat, Democrat, Democrat, Democrat, Rep…
-## $ name     &lt;chr&gt; &quot;DICKINSON, William Louis&quot;, &quot;BEVILL, Tom&quot;, &quot;NICHOLS, Wi…
-## $ ideology &lt;dbl&gt; 0.398, -0.213, -0.042, -0.175, -0.060, 0.373, -0.085, 0…</code></pre>
+## $ congress &lt;int&gt; 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, …
+## $ chamber  &lt;chr&gt; &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House&quot;, &quot;House…
+## $ state    &lt;chr&gt; &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AL&quot;, &quot;AK&quot;, &quot;AZ&quot;, &quot;AZ&quot;, …
+## $ district &lt;int&gt; 2, 4, 3, 5, 6, 1, 7, 1, 2, 3, 5, 4, 1, 3, 1, 4, 2, 36, 10, 2…
+## $ party    &lt;fct&gt; Republican, Democrat, Democrat, Democrat, Democrat, Republic…
+## $ name     &lt;chr&gt; &quot;DICKINSON, William Louis&quot;, &quot;BEVILL, Tom&quot;, &quot;NICHOLS, William…
+## $ ideology &lt;dbl&gt; 0.398, -0.213, -0.042, -0.175, -0.060, 0.373, -0.085, 0.279,…</code></pre>
 <p>Notice that <code>glimpse()</code> shows us the groups that we defined: <code>party, congress [32]</code>. This means that this data set now has 32 groups, one for each party-Congress combination.</p>
 </div>
 <div id="summarize" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> <code>summarize()</code></h3>
 <p>After grouping, we use <code>summarize()</code> to create summaries for each group. Whenever we use <code>summarize()</code> on a grouped data frame, <code>summarize()</code> will compute quantities <em>for each group</em>. Since we created a group for each party-Congress, we can now use summarize to find the average for each, for example.</p>
 <p>The first argument to <code>summarize()</code> is the grouped data frame to summarize. The remaining arguments are the summaries to compute. As examples, let’s compute the average, SD, and median.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="average-and-sd-in-r.html#cb53-1"></a><span class="co"># group the data frame by party and congress</span></span>
-<span id="cb53-2"><a href="average-and-sd-in-r.html#cb53-2"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(nominate_df, party, congress)</span>
-<span id="cb53-3"><a href="average-and-sd-in-r.html#cb53-3"></a></span>
-<span id="cb53-4"><a href="average-and-sd-in-r.html#cb53-4"></a><span class="co"># summarize the grouped data frame (across the groups)</span></span>
-<span id="cb53-5"><a href="average-and-sd-in-r.html#cb53-5"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df, </span>
-<span id="cb53-6"><a href="average-and-sd-in-r.html#cb53-6"></a>                           <span class="dt">average =</span> <span class="kw">mean</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb53-7"><a href="average-and-sd-in-r.html#cb53-7"></a>                           <span class="dt">sd =</span> <span class="kw">sd</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
-<span id="cb53-8"><a href="average-and-sd-in-r.html#cb53-8"></a>                           <span class="dt">median =</span> <span class="kw">median</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb53-9"><a href="average-and-sd-in-r.html#cb53-9"></a></span>
-<span id="cb53-10"><a href="average-and-sd-in-r.html#cb53-10"></a><span class="co"># quick look at ou  glimpse()</span></span>
-<span id="cb53-11"><a href="average-and-sd-in-r.html#cb53-11"></a><span class="kw">glimpse</span>(summarized_df)</span></code></pre></div>
-<pre><code>## Observations: 32
-## Variables: 5
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="average-and-sd-in-r.html#cb196-1"></a><span class="co"># group the data frame by party and congress</span></span>
+<span id="cb196-2"><a href="average-and-sd-in-r.html#cb196-2"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(nominate_df, party, congress)</span>
+<span id="cb196-3"><a href="average-and-sd-in-r.html#cb196-3"></a></span>
+<span id="cb196-4"><a href="average-and-sd-in-r.html#cb196-4"></a><span class="co"># summarize the grouped data frame (across the groups)</span></span>
+<span id="cb196-5"><a href="average-and-sd-in-r.html#cb196-5"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df, </span>
+<span id="cb196-6"><a href="average-and-sd-in-r.html#cb196-6"></a>                           <span class="dt">average =</span> <span class="kw">mean</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb196-7"><a href="average-and-sd-in-r.html#cb196-7"></a>                           <span class="dt">sd =</span> <span class="kw">sd</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
+<span id="cb196-8"><a href="average-and-sd-in-r.html#cb196-8"></a>                           <span class="dt">median =</span> <span class="kw">median</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;party&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="average-and-sd-in-r.html#cb198-1"></a><span class="co"># quick look at ou  glimpse()</span></span>
+<span id="cb198-2"><a href="average-and-sd-in-r.html#cb198-2"></a><span class="kw">glimpse</span>(summarized_df)</span></code></pre></div>
+<pre><code>## Rows: 32
+## Columns: 5
 ## Groups: party [2]
-## $ party    &lt;fct&gt; Democrat, Democrat, Democrat, Democrat, Democrat, Democ…
-## $ congress &lt;int&gt; 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, …
-## $ average  &lt;dbl&gt; -0.3092901, -0.3130075, -0.3142407, -0.3333065, -0.3615…
-## $ sd       &lt;dbl&gt; 0.1653092, 0.1664293, 0.1658089, 0.1609726, 0.1524251, …
-## $ median   &lt;dbl&gt; -0.3200, -0.3200, -0.3200, -0.3360, -0.3815, -0.3835, -…</code></pre>
+## $ party    &lt;fct&gt; Democrat, Democrat, Democrat, Democrat, Democrat, Democrat, …
+## $ congress &lt;int&gt; 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, …
+## $ average  &lt;dbl&gt; -0.3092901, -0.3130075, -0.3142407, -0.3333065, -0.3615000, …
+## $ sd       &lt;dbl&gt; 0.1653092, 0.1664293, 0.1658089, 0.1609726, 0.1524251, 0.137…
+## $ median   &lt;dbl&gt; -0.3200, -0.3200, -0.3200, -0.3360, -0.3815, -0.3835, -0.384…</code></pre>
 <p>Notice three important things above.</p>
 <ol style="list-style-type: decimal">
 <li><code>summarize()</code> returns a data frame with one row per group.</li>
@@ -506,12 +528,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We now have a data frame with our desired summaries. For the first row in the dataset, we have the average, SD, and median for the Democrats in the 100th Congress. The <code>party</code> and <code>congress</code> variables identify the group. The <code>average</code>, <code>sd</code>, and <code>median</code> variables contain the summaries for that group.</p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-16" class="exercise"><strong>Exercise 6.6  </strong></span>Use <code>filter()</code> create a dataset that contains only observations from the 115th Congress. The use <code>group_by()</code> and <code>summarize()</code> to compute the average ideology for each state’s delegation. Select the <em>Environment</em> tab in the upper-right panel. Click on the data frame with the summaries. Explore the values. What state has the most conservative delegation? Most liberal?
+<span id="exr:unnamed-chunk-80" class="exercise"><strong>Exercise 6.6  </strong></span>Use <code>filter()</code> create a dataset that contains only observations from the 115th Congress. The use <code>group_by()</code> and <code>summarize()</code> to compute the average ideology for each state’s delegation. Select the <em>Environment</em> tab in the upper-right panel. Click on the data frame with the summaries. Explore the values. What state has the most conservative delegation? Most liberal?
 </div>
 
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-17" class="exercise"><strong>Exercise 6.7  </strong></span>Use <code>group_by()</code> and <code>summarize()</code> to compute the minimum and maximum ideology for each congress (regardless of party). Select the <em>Environment</em> tab in the upper-right panel. Click on the data frame with the summaries. Explore the values.
+<span id="exr:unnamed-chunk-81" class="exercise"><strong>Exercise 6.7  </strong></span>Use <code>group_by()</code> and <code>summarize()</code> to compute the minimum and maximum ideology for each congress (regardless of party). Select the <em>Environment</em> tab in the upper-right panel. Click on the data frame with the summaries. Explore the values.
 </div>
 
 </div>
@@ -519,45 +541,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="geom_line" class="section level2">
 <h2><span class="header-section-number">6.5</span> <code>geom_line()</code></h2>
 <p>Because <code>summarize()</code> returns a data frame, we can easily work with it in ggplot. Let’s draw a **line plot* with <code>congress</code> mapped to the <code>x</code> aesthetic, <code>average</code> mapped to the <code>y</code> aesthetic, and <code>party</code> mapped to the <code>color</code> aesthetic. To draw a line plot rather than a histogram, we can use <code>geom_line()</code> as the geometry.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="average-and-sd-in-r.html#cb55-1"></a><span class="co"># plot the average ideology by party and congress</span></span>
-<span id="cb55-2"><a href="average-and-sd-in-r.html#cb55-2"></a><span class="kw">ggplot</span>(summarized_df, <span class="kw">aes</span>(<span class="dt">x =</span> congress, <span class="dt">y =</span> average, <span class="dt">color =</span> party)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb55-3"><a href="average-and-sd-in-r.html#cb55-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="notes_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="average-and-sd-in-r.html#cb200-1"></a><span class="co"># plot the average ideology by party and congress</span></span>
+<span id="cb200-2"><a href="average-and-sd-in-r.html#cb200-2"></a><span class="kw">ggplot</span>(summarized_df, <span class="kw">aes</span>(<span class="dt">x =</span> congress, <span class="dt">y =</span> average, <span class="dt">color =</span> party)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb200-3"><a href="average-and-sd-in-r.html#cb200-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="notes_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-19" class="exercise"><strong>Exercise 6.8  </strong></span>Reproduce the plot above of the average ideology across Congress for each party. Create a second plot of the SD over time. Comment briefly on one or two interesting patterns in the data.
+<span id="exr:unnamed-chunk-83" class="exercise"><strong>Exercise 6.8  </strong></span>Reproduce the plot above of the average ideology across Congress for each party. Create a second plot of the SD over time. Comment briefly on one or two interesting patterns in the data.
 </div>
 
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-20" class="exercise"><strong>Exercise 6.9  </strong></span>Use <code>group_by()</code> and <code>summarize()</code> to compute the minimum and maximum ideology for each congress (regardless of party). Select the <em>Environment</em> tab in the upper-right panel. Click on the data frame with the summaries. Explore the values. Create a line plot of the minimum across Congresses. Repeat for the maximum. Do any interesting patterns emerge? Would you say there’s a strong pattern or trend? Or do the results seem idiosyncratic?
+<span id="exr:unnamed-chunk-84" class="exercise"><strong>Exercise 6.9  </strong></span>Use <code>group_by()</code> and <code>summarize()</code> to compute the minimum and maximum ideology for each congress (regardless of party). Select the <em>Environment</em> tab in the upper-right panel. Click on the data frame with the summaries. Explore the values. Create a line plot of the minimum across Congresses. Repeat for the maximum. Do any interesting patterns emerge? Would you say there’s a strong pattern or trend? Or do the results seem idiosyncratic?
 </div>
 
 <details>
 <summary>Solution</summary>
 <p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="average-and-sd-in-r.html#cb56-1"></a><span class="co"># load packages</span></span>
-<span id="cb56-2"><a href="average-and-sd-in-r.html#cb56-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb56-3"><a href="average-and-sd-in-r.html#cb56-3"></a></span>
-<span id="cb56-4"><a href="average-and-sd-in-r.html#cb56-4"></a><span class="co"># load nominate data</span></span>
-<span id="cb56-5"><a href="average-and-sd-in-r.html#cb56-5"></a>nominate_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/nominate.rds&quot;</span>) </span>
-<span id="cb56-6"><a href="average-and-sd-in-r.html#cb56-6"></a></span>
-<span id="cb56-7"><a href="average-and-sd-in-r.html#cb56-7"></a><span class="co"># group the data frame by congress</span></span>
-<span id="cb56-8"><a href="average-and-sd-in-r.html#cb56-8"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(nominate_df, congress)</span>
-<span id="cb56-9"><a href="average-and-sd-in-r.html#cb56-9"></a></span>
-<span id="cb56-10"><a href="average-and-sd-in-r.html#cb56-10"></a><span class="co"># summarize the grouped data frame (across the groups)</span></span>
-<span id="cb56-11"><a href="average-and-sd-in-r.html#cb56-11"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df,</span>
-<span id="cb56-12"><a href="average-and-sd-in-r.html#cb56-12"></a>                           <span class="dt">minimum =</span> <span class="kw">min</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb56-13"><a href="average-and-sd-in-r.html#cb56-13"></a>                           <span class="dt">maximum =</span> <span class="kw">max</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb56-14"><a href="average-and-sd-in-r.html#cb56-14"></a></span>
-<span id="cb56-15"><a href="average-and-sd-in-r.html#cb56-15"></a><span class="co"># plot the minimum across congresses</span></span>
-<span id="cb56-16"><a href="average-and-sd-in-r.html#cb56-16"></a><span class="kw">ggplot</span>(summarized_df, <span class="kw">aes</span>(<span class="dt">x =</span> congress, <span class="dt">y =</span> minimum)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb56-17"><a href="average-and-sd-in-r.html#cb56-17"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="notes_files/figure-html/unnamed-chunk-21-1.png" width="288" /></p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="average-and-sd-in-r.html#cb57-1"></a><span class="co"># plot the maximum across congresses</span></span>
-<span id="cb57-2"><a href="average-and-sd-in-r.html#cb57-2"></a><span class="kw">ggplot</span>(summarized_df, <span class="kw">aes</span>(<span class="dt">x =</span> congress, <span class="dt">y =</span> maximum)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb57-3"><a href="average-and-sd-in-r.html#cb57-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<img src="notes_files/figure-html/unnamed-chunk-21-2.png" width="288" />
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="average-and-sd-in-r.html#cb201-1"></a><span class="co"># load packages</span></span>
+<span id="cb201-2"><a href="average-and-sd-in-r.html#cb201-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb201-3"><a href="average-and-sd-in-r.html#cb201-3"></a></span>
+<span id="cb201-4"><a href="average-and-sd-in-r.html#cb201-4"></a><span class="co"># load nominate data</span></span>
+<span id="cb201-5"><a href="average-and-sd-in-r.html#cb201-5"></a>nominate_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/nominate.rds&quot;</span>) </span>
+<span id="cb201-6"><a href="average-and-sd-in-r.html#cb201-6"></a></span>
+<span id="cb201-7"><a href="average-and-sd-in-r.html#cb201-7"></a><span class="co"># group the data frame by congress</span></span>
+<span id="cb201-8"><a href="average-and-sd-in-r.html#cb201-8"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(nominate_df, congress)</span>
+<span id="cb201-9"><a href="average-and-sd-in-r.html#cb201-9"></a></span>
+<span id="cb201-10"><a href="average-and-sd-in-r.html#cb201-10"></a><span class="co"># summarize the grouped data frame (across the groups)</span></span>
+<span id="cb201-11"><a href="average-and-sd-in-r.html#cb201-11"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df,</span>
+<span id="cb201-12"><a href="average-and-sd-in-r.html#cb201-12"></a>                           <span class="dt">minimum =</span> <span class="kw">min</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb201-13"><a href="average-and-sd-in-r.html#cb201-13"></a>                           <span class="dt">maximum =</span> <span class="kw">max</span>(ideology, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb201-14"><a href="average-and-sd-in-r.html#cb201-14"></a></span>
+<span id="cb201-15"><a href="average-and-sd-in-r.html#cb201-15"></a><span class="co"># plot the minimum across congresses</span></span>
+<span id="cb201-16"><a href="average-and-sd-in-r.html#cb201-16"></a><span class="kw">ggplot</span>(summarized_df, <span class="kw">aes</span>(<span class="dt">x =</span> congress, <span class="dt">y =</span> minimum)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb201-17"><a href="average-and-sd-in-r.html#cb201-17"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="notes_files/figure-html/unnamed-chunk-85-1.png" width="288" /></p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="average-and-sd-in-r.html#cb202-1"></a><span class="co"># plot the maximum across congresses</span></span>
+<span id="cb202-2"><a href="average-and-sd-in-r.html#cb202-2"></a><span class="kw">ggplot</span>(summarized_df, <span class="kw">aes</span>(<span class="dt">x =</span> congress, <span class="dt">y =</span> maximum)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb202-3"><a href="average-and-sd-in-r.html#cb202-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<img src="notes_files/figure-html/unnamed-chunk-85-2.png" width="288" />
 </p>
 </details>
 
@@ -588,12 +610,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -605,6 +626,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

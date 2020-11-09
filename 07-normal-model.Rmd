@@ -203,7 +203,7 @@ Let's see an example.
 
 ## Example: The Extremity of Party Leaders
 
-To illustrate the normal approximation, let's use it to estimate the percent of each party more extreme than their leaders during the 11th Congress.
+To illustrate the normal approximation, let's use it to estimate the percent of each party more extreme than their leaders during the 115th Congress.
 
 The histograms below show the ideology of legislators by party.
 
