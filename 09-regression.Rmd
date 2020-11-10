@@ -578,6 +578,23 @@ r <- residuals(fit)
 sqrt(mean(r^2)) # rms of residuals
 ```
 
+We can get the fitted values with `predict()`.
+```{r}
+predict(fit)
+```
+
+It can be helpful to plot the fitted values against the residuals.
+
+```{r}
+# create a data frame with the fitted values and the residuals.
+data <- data.frame(residual = residuals(fit),
+                   fitted_value = predict(fit))
+
+# plot fitted versus residuals
+ggplot(data, aes(x = fitted_value, y = residual)) + 
+  geom_point()
+```
+
 ## Standard Errors and *p*-Values
 
 Almost all software reports *p*-values or standard errors by default. These are testing the null hypothesis that the coefficient (slope or intercept) equals zero. You can multiply the standard errors by plus-and-minus two to get a 95% confidence interval.

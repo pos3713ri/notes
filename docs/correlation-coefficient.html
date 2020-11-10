@@ -24,7 +24,7 @@
 <meta name="author" content="Rob Lytle and Carlisle Rainey" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -653,10 +653,10 @@ product
 <p>In R, we can compute the corrlation between <code>x</code> and <code>y</code> using <code>cor(x, y)</code>.</p>
 <p>Note that dropping missing values is more complicated for pairs of data. If you want to drop missing values from the calculations, then <code>cor(x, y, use = pairwise.complete.obs")</code> is a good choice.</p>
 <p>We can use the code below to find the correlation in the example above.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="correlation-coefficient.html#cb214-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb214-2"><a href="correlation-coefficient.html#cb214-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">18</span>)</span>
-<span id="cb214-3"><a href="correlation-coefficient.html#cb214-3"></a></span>
-<span id="cb214-4"><a href="correlation-coefficient.html#cb214-4"></a><span class="kw">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="correlation-coefficient.html#cb207-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb207-2"><a href="correlation-coefficient.html#cb207-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">18</span>)</span>
+<span id="cb207-3"><a href="correlation-coefficient.html#cb207-3"></a></span>
+<span id="cb207-4"><a href="correlation-coefficient.html#cb207-4"></a><span class="kw">cor</span>(x, y)</span></code></pre></div>
 <pre><code>[1] 0.8814089</code></pre>
 
 <div class="exercise">
@@ -761,14 +761,14 @@ z
 <div id="example-clark-and-golder-2006" class="section level2">
 <h2><span class="header-section-number">10.4</span> Example: Clark and Golder (2006)</h2>
 <p>For a substantive example, consider Clark and Golder’s data.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="correlation-coefficient.html#cb216-1"></a><span class="co"># load parties dataset</span></span>
-<span id="cb216-2"><a href="correlation-coefficient.html#cb216-2"></a>parties_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;parties.rds&quot;</span>) </span>
-<span id="cb216-3"><a href="correlation-coefficient.html#cb216-3"></a></span>
-<span id="cb216-4"><a href="correlation-coefficient.html#cb216-4"></a><span class="co"># compute correlation between enep and eneg for each electoral system</span></span>
-<span id="cb216-5"><a href="correlation-coefficient.html#cb216-5"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(parties_df, electoral_system)</span>
-<span id="cb216-6"><a href="correlation-coefficient.html#cb216-6"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df, </span>
-<span id="cb216-7"><a href="correlation-coefficient.html#cb216-7"></a>                           <span class="dt">cor =</span> <span class="kw">cor</span>(enep, eneg))</span>
-<span id="cb216-8"><a href="correlation-coefficient.html#cb216-8"></a><span class="kw">print</span>(summarized_df)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="correlation-coefficient.html#cb209-1"></a><span class="co"># load parties dataset</span></span>
+<span id="cb209-2"><a href="correlation-coefficient.html#cb209-2"></a>parties_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;parties.rds&quot;</span>) </span>
+<span id="cb209-3"><a href="correlation-coefficient.html#cb209-3"></a></span>
+<span id="cb209-4"><a href="correlation-coefficient.html#cb209-4"></a><span class="co"># compute correlation between enep and eneg for each electoral system</span></span>
+<span id="cb209-5"><a href="correlation-coefficient.html#cb209-5"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(parties_df, electoral_system)</span>
+<span id="cb209-6"><a href="correlation-coefficient.html#cb209-6"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df, </span>
+<span id="cb209-7"><a href="correlation-coefficient.html#cb209-7"></a>                           <span class="dt">cor =</span> <span class="kw">cor</span>(enep, eneg))</span>
+<span id="cb209-8"><a href="correlation-coefficient.html#cb209-8"></a><span class="kw">print</span>(summarized_df)</span></code></pre></div>
 <pre><code># A tibble: 3 x 2
   electoral_system           cor
   &lt;fct&gt;                    &lt;dbl&gt;
@@ -835,15 +835,15 @@ How many units is one SD for ENEG? What about for ENEP? Going from SDs to the or
 
 <details>
 <p><summary>Solution</summary></p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="correlation-coefficient.html#cb218-1"></a><span class="co"># load data</span></span>
-<span id="cb218-2"><a href="correlation-coefficient.html#cb218-2"></a>gamson_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;gamson.rds&quot;</span>) </span>
-<span id="cb218-3"><a href="correlation-coefficient.html#cb218-3"></a></span>
-<span id="cb218-4"><a href="correlation-coefficient.html#cb218-4"></a><span class="co"># compute correlation coefficient</span></span>
-<span id="cb218-5"><a href="correlation-coefficient.html#cb218-5"></a><span class="kw">cor</span>(<span class="dt">x =</span> gamson_df<span class="op">$</span>seat_share, gamson_df<span class="op">$</span>portfolio_share)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="correlation-coefficient.html#cb211-1"></a><span class="co"># load data</span></span>
+<span id="cb211-2"><a href="correlation-coefficient.html#cb211-2"></a>gamson_df &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;gamson.rds&quot;</span>) </span>
+<span id="cb211-3"><a href="correlation-coefficient.html#cb211-3"></a></span>
+<span id="cb211-4"><a href="correlation-coefficient.html#cb211-4"></a><span class="co"># compute correlation coefficient</span></span>
+<span id="cb211-5"><a href="correlation-coefficient.html#cb211-5"></a><span class="kw">cor</span>(<span class="dt">x =</span> gamson_df<span class="op">$</span>seat_share, gamson_df<span class="op">$</span>portfolio_share)</span></code></pre></div>
 <pre><code>[1] 0.9423176</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="correlation-coefficient.html#cb220-1"></a><span class="co"># create scatterplot</span></span>
-<span id="cb220-2"><a href="correlation-coefficient.html#cb220-2"></a><span class="kw">ggplot</span>(gamson_df, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb220-3"><a href="correlation-coefficient.html#cb220-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="correlation-coefficient.html#cb213-1"></a><span class="co"># create scatterplot</span></span>
+<span id="cb213-2"><a href="correlation-coefficient.html#cb213-2"></a><span class="kw">ggplot</span>(gamson_df, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb213-3"><a href="correlation-coefficient.html#cb213-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <img src="notes_files/figure-html/unnamed-chunk-146-1.png" width="672" style="display: block; margin: auto;" />
 </details>
 
@@ -856,24 +856,24 @@ How many units is one SD for ENEG? What about for ENEP? Going from SDs to the or
 </ol>
 <details>
 <p><summary>Solution</summary></p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="correlation-coefficient.html#cb221-1"></a><span class="co"># get latest version of data package</span></span>
-<span id="cb221-2"><a href="correlation-coefficient.html#cb221-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;pos5737/pos5737data&quot;</span>)</span>
-<span id="cb221-3"><a href="correlation-coefficient.html#cb221-3"></a></span>
-<span id="cb221-4"><a href="correlation-coefficient.html#cb221-4"></a><span class="co"># load anscombe data</span></span>
-<span id="cb221-5"><a href="correlation-coefficient.html#cb221-5"></a><span class="kw">data</span>(anscombe, <span class="dt">package =</span> <span class="st">&quot;pos5737data&quot;</span>)</span>
-<span id="cb221-6"><a href="correlation-coefficient.html#cb221-6"></a></span>
-<span id="cb221-7"><a href="correlation-coefficient.html#cb221-7"></a><span class="co"># quick look</span></span>
-<span id="cb221-8"><a href="correlation-coefficient.html#cb221-8"></a><span class="kw">glimpse</span>(anscombe)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="correlation-coefficient.html#cb214-1"></a><span class="co"># get latest version of data package</span></span>
+<span id="cb214-2"><a href="correlation-coefficient.html#cb214-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;pos5737/pos5737data&quot;</span>)</span>
+<span id="cb214-3"><a href="correlation-coefficient.html#cb214-3"></a></span>
+<span id="cb214-4"><a href="correlation-coefficient.html#cb214-4"></a><span class="co"># load anscombe data</span></span>
+<span id="cb214-5"><a href="correlation-coefficient.html#cb214-5"></a><span class="kw">data</span>(anscombe, <span class="dt">package =</span> <span class="st">&quot;pos5737data&quot;</span>)</span>
+<span id="cb214-6"><a href="correlation-coefficient.html#cb214-6"></a></span>
+<span id="cb214-7"><a href="correlation-coefficient.html#cb214-7"></a><span class="co"># quick look</span></span>
+<span id="cb214-8"><a href="correlation-coefficient.html#cb214-8"></a><span class="kw">glimpse</span>(anscombe)</span></code></pre></div>
 <pre><code>Rows: 44
 Columns: 3
 $ dataset &lt;chr&gt; &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;II&quot;, …
 $ x       &lt;dbl&gt; 10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5, 10, 8, 13, 9, 11, 14, 6…
 $ y       &lt;dbl&gt; 8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, …</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="correlation-coefficient.html#cb223-1"></a><span class="co"># compute correlations for each version of the variable &quot;dataset&quot;</span></span>
-<span id="cb223-2"><a href="correlation-coefficient.html#cb223-2"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(anscombe, dataset)</span>
-<span id="cb223-3"><a href="correlation-coefficient.html#cb223-3"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df, </span>
-<span id="cb223-4"><a href="correlation-coefficient.html#cb223-4"></a>                           <span class="dt">cor =</span> <span class="kw">cor</span>(x, y))</span>
-<span id="cb223-5"><a href="correlation-coefficient.html#cb223-5"></a><span class="kw">print</span>(summarized_df)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="correlation-coefficient.html#cb216-1"></a><span class="co"># compute correlations for each version of the variable &quot;dataset&quot;</span></span>
+<span id="cb216-2"><a href="correlation-coefficient.html#cb216-2"></a>grouped_df &lt;-<span class="st"> </span><span class="kw">group_by</span>(anscombe, dataset)</span>
+<span id="cb216-3"><a href="correlation-coefficient.html#cb216-3"></a>summarized_df &lt;-<span class="st"> </span><span class="kw">summarize</span>(grouped_df, </span>
+<span id="cb216-4"><a href="correlation-coefficient.html#cb216-4"></a>                           <span class="dt">cor =</span> <span class="kw">cor</span>(x, y))</span>
+<span id="cb216-5"><a href="correlation-coefficient.html#cb216-5"></a><span class="kw">print</span>(summarized_df)</span></code></pre></div>
 <pre><code># A tibble: 4 x 2
   dataset   cor
   &lt;chr&gt;   &lt;dbl&gt;
@@ -881,10 +881,10 @@ $ y       &lt;dbl&gt; 8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.8
 2 II      0.816
 3 III     0.816
 4 IV      0.817</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="correlation-coefficient.html#cb225-1"></a><span class="co"># scatterplots</span></span>
-<span id="cb225-2"><a href="correlation-coefficient.html#cb225-2"></a><span class="kw">ggplot</span>(anscombe, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb225-3"><a href="correlation-coefficient.html#cb225-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb225-4"><a href="correlation-coefficient.html#cb225-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(dataset))</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="correlation-coefficient.html#cb218-1"></a><span class="co"># scatterplots</span></span>
+<span id="cb218-2"><a href="correlation-coefficient.html#cb218-2"></a><span class="kw">ggplot</span>(anscombe, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb218-3"><a href="correlation-coefficient.html#cb218-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb218-4"><a href="correlation-coefficient.html#cb218-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(dataset))</span></code></pre></div>
 <img src="notes_files/figure-html/unnamed-chunk-148-1.png" width="672" style="display: block; margin: auto;" />
 </details>
 

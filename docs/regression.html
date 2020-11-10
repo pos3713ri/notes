@@ -24,7 +24,7 @@
 <meta name="author" content="Rob Lytle and Carlisle Rainey" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -544,19 +544,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="geom_smooth" class="section level3">
 <h3><span class="header-section-number">11.6.1</span> <code>geom_smooth()</code></h3>
 <p>In the context of ggplot, we can show the fitted line with <code>geom_smooth()</code>.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="regression.html#cb226-1"></a>gamson &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/gamson.rds&quot;</span>)</span>
-<span id="cb226-2"><a href="regression.html#cb226-2"></a></span>
-<span id="cb226-3"><a href="regression.html#cb226-3"></a><span class="kw">ggplot</span>(gamson, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb226-4"><a href="regression.html#cb226-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb226-5"><a href="regression.html#cb226-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="regression.html#cb219-1"></a>gamson &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;data/gamson.rds&quot;</span>)</span>
+<span id="cb219-2"><a href="regression.html#cb219-2"></a></span>
+<span id="cb219-3"><a href="regression.html#cb219-3"></a><span class="kw">ggplot</span>(gamson, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb219-4"><a href="regression.html#cb219-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb219-5"><a href="regression.html#cb219-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
 <p><img src="notes_files/figure-html/unnamed-chunk-164-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>By default, <code>geom_smooth()</code> fits a smoothed curve rather than a straight line. There’s nothing wrong with a smoothed curve—sometimes it’s preferable to a straight line. But we don’t understand how to fit a smoothed curve. To us the least-squares fit, we supply the argument <code>method = "lm"</code> to <code>geom_smooth()</code>.</p>
 <p><code>geom_smooth()</code> also includes the uncertainty around the line by default. Notice the grey band around the line, especially in the top-right. We don’t have a clear since of how uncertainty enters the fit, nor do we understand a standard error, so we should not include the uncertainty in the plot (at least for now). To remove the grey band, we supply the argument <code>se = FALSE</code> to <code>geom_smooth()</code>.</p>
 <p>The line <span class="math inline">\(y = x\)</span> is theoretically relevant–that’s the line that indicates a perfectly proportional portfolio distribution. To include it, we can use <code>geom_abline()</code>.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="regression.html#cb227-1"></a><span class="kw">ggplot</span>(gamson, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb227-2"><a href="regression.html#cb227-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb227-3"><a href="regression.html#cb227-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb227-4"><a href="regression.html#cb227-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="regression.html#cb220-1"></a><span class="kw">ggplot</span>(gamson, <span class="kw">aes</span>(<span class="dt">x =</span> seat_share, <span class="dt">y =</span> portfolio_share)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb220-2"><a href="regression.html#cb220-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb220-3"><a href="regression.html#cb220-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb220-4"><a href="regression.html#cb220-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="notes_files/figure-html/unnamed-chunk-165-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="lm" class="section level3">
@@ -566,26 +566,273 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The first argument is a formula, which is a special type of object in R. It has a left-hand side and a right-hand side, separated by a <code>~</code>. You put the name of the outcome variable <span class="math inline">\(y\)</span> on the LHS and the name of the explanatory variable <span class="math inline">\(x\)</span> on the RHS.</li>
 <li>The second argument is the dataset.</li>
 </ol>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="regression.html#cb228-1"></a>fit &lt;-<span class="st"> </span><span class="kw">lm</span>(portfolio_share <span class="op">~</span><span class="st"> </span>seat_share, <span class="dt">data =</span> gamson)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="regression.html#cb221-1"></a>fit &lt;-<span class="st"> </span><span class="kw">lm</span>(portfolio_share <span class="op">~</span><span class="st"> </span>seat_share, <span class="dt">data =</span> gamson)</span></code></pre></div>
 </div>
 <div id="quick-look-at-the-fit" class="section level3">
 <h3><span class="header-section-number">11.6.3</span> Quick Look at the Fit</h3>
 <p>We have several ways to look at the fit. Experiment with <code>coef()</code>, <code>arm::display()</code>, <code>texreg::screenreg()</code>, and <code>summary()</code> to see the differences. For now, we only understand the slope and intercept, so <code>coef()</code> works perfectly.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="regression.html#cb229-1"></a><span class="kw">coef</span>(fit)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="regression.html#cb222-1"></a><span class="kw">coef</span>(fit)</span></code></pre></div>
 <pre><code>(Intercept)  seat_share 
  0.06913558  0.79158398 </code></pre>
 <p>The <code>coef()</code> function outputs a numeric vector with named entries. The intercept is named <code>(Intercept)</code> and the slope is named after its associated variable.</p>
 <p>To find the RMS of the residuals, do the following:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="regression.html#cb231-1"></a>r &lt;-<span class="st"> </span><span class="kw">residuals</span>(fit)</span>
-<span id="cb231-2"><a href="regression.html#cb231-2"></a><span class="kw">sqrt</span>(<span class="kw">mean</span>(r<span class="op">^</span><span class="dv">2</span>)) <span class="co"># rms of residuals</span></span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="regression.html#cb224-1"></a>r &lt;-<span class="st"> </span><span class="kw">residuals</span>(fit)</span>
+<span id="cb224-2"><a href="regression.html#cb224-2"></a><span class="kw">sqrt</span>(<span class="kw">mean</span>(r<span class="op">^</span><span class="dv">2</span>)) <span class="co"># rms of residuals</span></span></code></pre></div>
 <pre><code>[1] 0.06880963</code></pre>
+<p>We can get the fitted values with <code>predict()</code>.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="regression.html#cb226-1"></a><span class="kw">predict</span>(fit)</span></code></pre></div>
+<pre><code>         1          2          3          4          5          6          7 
+0.08832550 0.43374397 0.47692126 0.44280255 0.48705257 0.43744203 0.49241312 
+         8          9         10         11         12         13         14 
+0.46223510 0.46762002 0.44463055 0.48522460 0.46240661 0.46744856 0.46240661 
+        15         16         17         18         19         20         21 
+0.46744856 0.46240661 0.46744856 0.45232274 0.47753241 0.45232274 0.47753241 
+        22         23         24         25         26         27         28 
+0.76759204 0.16226311 0.76759204 0.16226311 0.47249048 0.45736466 0.52146931 
+        29         30         31         32         33         34         35 
+0.40838586 0.50890448 0.42095069 0.52238124 0.40747391 0.52238124 0.40747391 
+        36         37         38         39         40         41         42 
+0.23616707 0.57023001 0.19259364 0.23616707 0.57023001 0.19259364 0.40838586 
+        43         44         45         46         47         48         49 
+0.52146931 0.40838586 0.52146931 0.24044853 0.68940661 0.68243489 0.24742026 
+        50         51         52         53         54         55         56 
+0.20212169 0.72773347 0.43854144 0.49131373 0.42843610 0.50141904 0.37310383 
+        57         58         59         60         61         62         63 
+0.55675131 0.43400632 0.49584882 0.44637482 0.35979533 0.19282058 0.36720117 
+        64         65         66         67         68         69         70 
+0.16686200 0.13754408 0.29879267 0.16686200 0.23210876 0.13898123 0.45716695 
+        71         72         73         74         75         76         77 
+0.23986939 0.21368570 0.13108563 0.41330252 0.22056904 0.15861899 0.23210876 
+        78         79         80         81         82         83         84 
+0.13898123 0.45716695 0.23986939 0.35447399 0.32686061 0.17958917 0.11515791 
+        85         86         87         88         89         90         91 
+0.16118024 0.23021371 0.19339586 0.32686061 0.17958917 0.11515791 0.16118024 
+        92         93         94         95         96         97         98 
+0.23688848 0.20543482 0.36794544 0.20019253 0.12680064 0.25006907 0.21614404 
+        99        100        101        102        103        104        105 
+0.39142334 0.21048987 0.21305995 0.18607412 0.16808358 0.13210249 0.32550084 
+       106        107        108        109        110        111        112 
+0.18157649 0.25006907 0.21614404 0.39142334 0.21048987 0.25006907 0.21614404 
+       113        114        115        116        117        118        119 
+0.39142334 0.21048987 0.26528029 0.23725961 0.37035781 0.19522861 0.22056904 
+       120        121        122        123        124        125        126 
+0.23433572 0.40641920 0.20680237 0.28022466 0.23800684 0.29605632 0.16940289 
+       127        128        129        130        131        132        133 
+0.15357121 0.25817056 0.30542930 0.32315134 0.18137510 0.30001424 0.25383851 
+       134        135        136        137        138        139        140 
+0.32640037 0.18787319 0.27185831 0.26220485 0.34908601 0.18497714 0.16176775 
+       141        142        143        144        145        146        147 
+0.14492554 0.22913661 0.18703107 0.26282103 0.22071550 0.50450678 0.42534837 
+       148        149        150        151        152        153        154 
+0.51769984 0.41215531 0.66703414 0.18703107 0.14492554 0.66703414 0.18703107 
+       155        156        157        158        159        160        161 
+0.14492554 0.74637964 0.16588474 0.08672634 0.74637964 0.16588474 0.08672634 
+       162        163        164        165        166        167        168 
+0.28722504 0.34376677 0.36799892 0.66282357 0.26703158 0.24904104 0.32100321 
+       169        170        171        172        173        174        175 
+0.11711037 0.38097171 0.14929599 0.29959675 0.11923584 0.49999773 0.17091067 
+       176        177        178        179        180        181        182 
+0.28399410 0.11436895 0.49885262 0.18221902 0.34053581 0.47623594 0.46492757 
+       183        184        185        186        187        188        189 
+0.46492757 0.68674507 0.13002666 0.14742411 0.10393049 0.72531704 0.15246021 
+       190        191        192        193        194        195        196 
+0.12121348 0.77152698 0.15832814 0.78267606 0.14717908 0.30709641 0.31195277 
+       197        198        199        200        201        202        203 
+0.30709641 0.14198074 0.66018496 0.12190785 0.21689793 0.40403650 0.41012561 
+       204        205        206        207        208        209        210 
+0.09958112 0.15438309 0.42168980 0.40838586 0.16891508 0.68081410 0.24904104 
+       211        212        213        214        215        216        217 
+0.36597958 0.36048246 0.14059803 0.20106625 0.46862655 0.46122859 0.39053058 
+       218        219        220        221        222        223        224 
+0.38457882 0.14650845 0.14650845 0.60019827 0.19939624 0.19939624 0.70480151 
+       225        226        227        228        229        230        231 
+0.22505365 0.70480151 0.22505365 0.28869903 0.34647887 0.11535947 0.15002738 
+       232        233        234        235        236        237        238 
+0.23669716 0.44372444 0.16101587 0.16808358 0.29530245 0.44372444 0.16101587 
+       239        240        241        242        243        244        245 
+0.16808358 0.29530245 0.28265496 0.10559011 0.35556399 0.32431726 0.26703158 
+       246        247        248        249        250        251        252 
+0.10292271 0.33460583 0.30564544 0.12705636 0.26703158 0.34948824 0.27252869 
+       253        254        255        256        257        258        259 
+0.11311247 0.13510092 0.44293912 0.34032640 0.12777144 0.15708936 0.47602456 
+       260        261        262        263        264        265        266 
+0.32806493 0.12092145 0.14311540 0.27744717 0.35035620 0.27223937 0.11600569 
+       267        268        269        270        271        272        273 
+0.12121348 0.60140755 0.19196758 0.20561558 0.27744717 0.35035620 0.27223937 
+       274        275        276        277        278        279        280 
+0.11600569 0.12121348 0.29211699 0.37016047 0.28654245 0.11930640 0.27744717 
+       281        282        283        284        285        286        287 
+0.37862706 0.28339893 0.12865317 0.27744717 0.37862706 0.28339893 0.12865317 
+       288        289        290        291        292        293        294 
+0.47268822 0.34851817 0.10017809 0.14674186 0.43596719 0.17854150 0.31368999 
+       295        296        297        298        299        300        301 
+0.13992764 0.40752262 0.12351921 0.14768972 0.38939475 0.43248560 0.15348470 
+       302        303        304        305        306        307        308 
+0.41302042 0.44771923 0.15173565 0.12420229 0.34446915 0.47602456 0.15791135 
+       309        310        311        312        313        314        315 
+0.36505483 0.18923799 0.11826838 0.41306517 0.13464598 0.28204437 0.18303256 
+       316        317        318        319        320        321        322 
+0.13177892 0.35957286 0.13177892 0.33109862 0.14109777 0.17246589 0.28686730 
+       323        324        325        326        327        328        329 
+0.46769537 0.18279893 0.30864049 0.50755135 0.34879699 0.58105815 0.17251409 
+       330        331        332        333        334        335        336 
+0.75734107 0.17251409 0.75734107 0.20651793 0.72333723 0.20553848 0.72431668 
+       337        338        339        340        341        342        343 
+0.13663500 0.19390722 0.66844852 0.13663500 0.19390722 0.66844852 0.15774573 
+       344        345        346        347        348        349        350 
+0.23158751 0.60965748 0.15774573 0.23158751 0.60965748 0.14776976 0.15825431 
+       351        352        353        354        355        356        357 
+0.21329823 0.54880401 0.14776976 0.15825431 0.21329823 0.54880401 0.14776976 
+       358        359        360        361        362        363        364 
+0.15825431 0.21329823 0.54880401 0.42063315 0.50922197 0.17500092 0.75485425 
+       365        366        367        368        369        370        371 
+0.17500092 0.75485425 0.43171427 0.49814088 0.42894649 0.50090868 0.42894649 
+       372        373        374        375        376        377        378 
+0.50090868 0.42894649 0.50090868 0.15846794 0.68949918 0.15102358 0.23876072 
+       379        380        381        382        383        384        385 
+0.33299692 0.42723310 0.44293912 0.48691603 0.41144218 0.51841299 0.26103474 
+       386        387        388        389        390        391        392 
+0.26103474 0.47692126 0.28502213 0.64483304 0.26703158 0.66282357 0.26703158 
+       393        394        395        396        397        398        399 
+0.66282357 0.29176858 0.63808657 0.29176858 0.63808657 0.31650558 0.19282058 
+       400        401        402        403        404        405        406 
+0.48966457 0.38953863 0.54031652 0.34618997 0.34618997 0.30661079 0.35002021 
+       407        408        409        410        411        412        413 
+0.50323003 0.14574048 0.36865386 0.56120129 0.26220485 0.32012562 0.41666026 
+       414        415        416        417        418        419        420 
+0.27341531 0.32448525 0.40109015 0.23578484 0.27744717 0.33994063 0.21495368 
+       421        422        423        424        425        426        427 
+0.28902003 0.64083511 0.36597958 0.56387557 0.31910946 0.61074568 0.23454120 
+       428        429        430        431        432        433        434 
+0.15183839 0.18728244 0.12820901 0.43539086 0.27238012 0.12262099 0.60398963 
+       435        436        437        438        439        440        441 
+0.27516428 0.65469084 0.21755758 0.71229757 0.21640702 0.71344810 0.12635852 
+       442        443        444        445        446        447        448 
+0.80349661 0.12635852 0.80349661 0.32777193 0.60208320 0.38769987 0.50354144 
+       449        450        451        452        453        454        455 
+0.10774944 0.10822615 0.82162902 0.14031344 0.08854773 0.73130529 0.10795987 
+       456        457        458        459        460        461        462 
+0.09046569 0.79672924 0.11179580 0.14398450 0.08954893 0.76545729 0.09168070 
+       463        464        465        466        467        468        469 
+0.83817445 0.09168070 0.83817445 0.11994672 0.77246864 0.10657537 0.12011896 
+       470        471        472        473        474        475        476 
+0.77485284 0.10401895 0.13064380 0.79921135 0.12942178 0.08486242 0.78470654 
+       477        478        479        480        481        482        483 
+0.24754959 0.13680986 0.08144000 0.60232684 0.24754959 0.13680986 0.08144000 
+       484        485        486        487        488        489        490 
+0.60232684 0.24754959 0.13680986 0.08144000 0.60232684 0.26595018 0.08860076 
+       491        492        493        494        495        496        497 
+0.64443978 0.19025226 0.14483351 0.08860076 0.64443978 0.19025226 0.14483351 
+       498        499        500        501        502        503        504 
+0.08860076 0.64443978 0.19330562 0.14674186 0.65894327 0.14201157 0.73758428 
+       505        506        507        508        509        510        511 
+0.11939489 0.19928821 0.13101142 0.10114033 0.63668635 0.20477217 0.13361855 
+       512        513        514        515        516        517        518 
+0.66060002 0.11139096 0.81846419 0.10993888 0.10721866 0.78183320 0.12353998 
+       519        520        521        522        523        524        525 
+0.78183320 0.09361756 0.21348325 0.10638660 0.67912087 0.20546394 0.11311247 
+       526        527        528        529        530        531        532 
+0.10431710 0.64523281 0.20213885 0.11203986 0.10345901 0.63118166 0.08844251 
+       533        534        535        536        537        538        539 
+0.20213885 0.11203986 0.10345901 0.63118166 0.08844251 0.20816733 0.11398454 
+       540        541        542        543        544        545        546 
+0.65665682 0.08931761 0.22701982 0.11887993 0.13185672 0.55576506 0.10374035 
+       547        548        549        550        551        552        553 
+0.22701982 0.11887993 0.13185672 0.55576506 0.10374035 0.22701982 0.11887993 
+       554        555        556        557        558        559        560 
+0.13185672 0.55576506 0.10374035 0.26650665 0.10483035 0.11322912 0.56046355 
+       561        562        563        564        565        566        567 
+0.09223220 0.26650665 0.10483035 0.11322912 0.56046355 0.09223220 0.26650665 
+       568        569        570        571        572        573        574 
+0.10483035 0.11322912 0.56046355 0.09223220 0.26650665 0.10483035 0.11322912 
+       575        576        577        578        579        580        581 
+0.56046355 0.09223220 0.27814933 0.10693594 0.58944642 0.09359464 0.28915287 
+       582        583        584        585        586        587        588 
+0.10739946 0.56178300 0.10979095 0.25569832 0.09703282 0.22954467 0.09703282 
+       589        590        591        592        593        594        595 
+0.42831246 0.09877639 0.28915287 0.10739946 0.56178300 0.10979095 0.31203257 
+       596        597        598        599        600        601        602 
+0.30552643 0.32287620 0.12769111 0.54744252 0.12787503 0.25654239 0.13626638 
+       603        604        605        606        607        608        609 
+0.14829398 0.24328406 0.46492757 0.21162071 0.65118262 0.27867253 0.63090484 
+       610        611        612        613        614        615        616 
+0.29895028 0.43448204 0.49537313 0.43448204 0.49537313 0.38208740 0.54776775 
+       617        618        619        620        621        622        623 
+0.38208740 0.54776775 0.58861257 0.34124258 0.45572310 0.47413204 0.45572310 
+       624        625        626        627        628        629        630 
+0.47413204 0.58861257 0.34124258 0.50323003 0.42662511 0.55626420 0.37359097 
+       631        632        633        634        635        636        637 
+0.43051089 0.49934426 0.42534837 0.50450678 0.42326525 0.50658987 0.42326525 
+       638        639        640        641        642        643        644 
+0.50658987 0.51149133 0.41836381 0.44546239 0.48439273 0.35035620 0.40243410 
+       645        646        647        648        649        650        651 
+0.16287579 0.15246021 0.35035620 0.40243410 0.16287579 0.15246021 0.36231483 
+       652        653        654        655        656        657        658 
+0.36231483 0.18640729 0.15708936 0.38078281 0.37454987 0.16262976 0.15016387 
+       659        660        661        662        663        664        665 
+0.57287083 0.22334025 0.20277963 0.48176978 0.18703107 0.17018886 0.22913661 
+       666        667        668        669        670        671        672 
+0.49934426 0.18098984 0.18098984 0.20680237 0.39024985 0.44252425 0.16621664 
+       673        674        675        676        677        678        679 
+0.69737685 0.23247831 0.45572310 0.20720255 0.17958917 0.22561149 0.40700680 
+       680        681        682        683        684        685        686 
+0.19463060 0.16567022 0.14636329 0.22359099 0.44353340 0.20819763 0.17610639 
+       687        688        689        690        691        692        693 
+0.24028888 0.12626020 0.42004394 0.11809954 0.28947338 0.18338481 0.57287083 
+       694        695        696        697        698        699        700 
+0.35698431 0.38867406 0.19259364 0.41772303 0.27616525 0.65368992 0.50890448 
+       701        702        703        704        705        706        707 
+0.42095069 0.59685825 0.33299692 0.44571437 0.48414078 0.38749001 0.27563575 
+       708        709        710        711        712        713        714 
+0.33586498 0.43636526 0.18338481 0.37924064 0.43636526 0.18338481 0.37924064 
+       715        716        717        718        719        720        721 
+0.21889472 0.22959179 0.24028888 0.37935093 0.24724197 0.19776798 0.24724197 
+       722        723        724        725        726        727        728 
+0.37587437 0.20453811 0.21495368 0.27744717 0.37118737 0.17062072 0.35329394 
+       729        730        731        732        733        734        735 
+0.47507611 0.23151179 0.19091774 0.57656123 0.24788035 0.20957790 0.54153250 
+       736        737        738        739        740        741        742 
+0.18221902 0.54031652 0.27645521 0.63376191 0.29609322 0.57656123 0.35329394 
+       743        744        745        746        747        748        749 
+0.57624407 0.35361108 0.55353774 0.34087338 0.10457964 0.55353774 0.34087338 
+       750        751        752        753        754        755        756 
+0.10457964 0.55353774 0.34087338 0.10457964 0.52339684 0.40645831 0.69348352 
+       757        758        759        760        761        762        763 
+0.23637164 0.70356685 0.22628828 0.74039879 0.18945635 0.44733682 0.24064545 
+       764        765        766        767        768        769        770 
+0.31100846 0.35862915 0.24102239 0.39933920 0.56581574 0.36403943 0.21348325 
+       771        772        773        774        775        776        777 
+0.22279601 0.44164569 0.19020137 0.26703158 0.59812679 0.13383235 0.18289616 
+       778        779        780        781        782        783        784 
+0.64741848 0.13312591 0.10468576 0.19438621 0.69789373 0.10671077 0.77370146 
+       785        786        787        788        789        790        791 
+0.11124112 0.11404815 0.77370146 0.11124112 0.11404815 0.81383133 0.11602383 
+       792        793        794        795        796        797        798 
+0.24077354 0.68908162 0.24077354 0.68908162 0.24077354 0.68908162 0.20106625 
+       799        800        801        802        803        804        805 
+0.72878888 0.42685361 0.50300153 0.76722539 0.16262976 0.74095964 0.18889553 
+       806        807        808        809        810        811        812 
+0.74095964 0.18889553 0.73869674 0.19115842 0.70590793 0.22394721 0.21950817 
+       813        814        815        816        817        818        819 
+0.71034696 0.16594801 0.76390712 0.20449938 0.72535577 0.19377726 0.71858430 
+       820        821        822        823        824        825        826 
+0.08662915 0.22625904 0.70359611 0.17823954 0.75161562 0.75288057 0.17697456 </code></pre>
+<p>It can be helpful to plot the fitted values against the residuals.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="regression.html#cb228-1"></a><span class="co"># create a data frame with the fitted values and the residuals.</span></span>
+<span id="cb228-2"><a href="regression.html#cb228-2"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">residual =</span> <span class="kw">residuals</span>(fit),</span>
+<span id="cb228-3"><a href="regression.html#cb228-3"></a>                   <span class="dt">fitted_value =</span> <span class="kw">predict</span>(fit))</span>
+<span id="cb228-4"><a href="regression.html#cb228-4"></a></span>
+<span id="cb228-5"><a href="regression.html#cb228-5"></a><span class="co"># plot fitted versus residuals</span></span>
+<span id="cb228-6"><a href="regression.html#cb228-6"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> fitted_value, <span class="dt">y =</span> residual)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb228-7"><a href="regression.html#cb228-7"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="notes_files/figure-html/unnamed-chunk-170-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="standard-errors-and-p-values" class="section level2">
 <h2><span class="header-section-number">11.7</span> Standard Errors and <em>p</em>-Values</h2>
 <p>Almost all software reports <em>p</em>-values or standard errors by default. These are testing the null hypothesis that the coefficient (slope or intercept) equals zero. You can multiply the standard errors by plus-and-minus two to get a 95% confidence interval.</p>
 <p>The two functions below summarize the fitted model, giving you some quantities you’ve seen and understand and others that you haven’t.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="regression.html#cb233-1"></a>arm<span class="op">::</span><span class="kw">display</span>(fit, <span class="dt">detail =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="regression.html#cb229-1"></a>arm<span class="op">::</span><span class="kw">display</span>(fit, <span class="dt">detail =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>lm(formula = portfolio_share ~ seat_share, data = gamson)
             coef.est coef.se t value Pr(&gt;|t|)
 (Intercept)  0.07     0.00   17.12    0.00   
@@ -593,7 +840,7 @@ seat_share   0.79     0.01   80.81    0.00
 ---
 n = 826, k = 2
 residual sd = 0.07, R-Squared = 0.89</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="regression.html#cb235-1"></a>texreg<span class="op">::</span><span class="kw">screenreg</span>(fit)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="regression.html#cb231-1"></a>texreg<span class="op">::</span><span class="kw">screenreg</span>(fit)</span></code></pre></div>
 <pre><code>
 =======================
              Model 1   
@@ -623,7 +870,7 @@ Num. obs.    826
 <h2><span class="header-section-number">11.9</span> Review Exercises</h2>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-170" class="exercise"><strong>Exercise 11.4  </strong></span>Use <code>devtools::install_github("pos5737/pos5737data")</code> to get the latest version of the pos5737 data package. Load the data set <code>anscombe</code> into R with <code>data(anscombe, package = "pos5737data")</code>. Use <code>glimpse(anscombe)</code> to get a quick look at the data. Realize that this one data frame actually contains four different datasets stacked on top of each other and numbered I, II, III, and IV.</p>
+<p><span id="exr:unnamed-chunk-172" class="exercise"><strong>Exercise 11.4  </strong></span>Use <code>devtools::install_github("pos5737/pos5737data")</code> to get the latest version of the pos5737 data package. Load the data set <code>anscombe</code> into R with <code>data(anscombe, package = "pos5737data")</code>. Use <code>glimpse(anscombe)</code> to get a quick look at the data. Realize that this one data frame actually contains four different datasets stacked on top of each other and numbered I, II, III, and IV.</p>
 <ol style="list-style-type: decimal">
 <li>Fit a regression model on each “dataset” in the anscombe dataset. To only use a subset of the dataset, you can <code>filter()</code> the dataset before supplying the <code>data</code> to <code>lm()</code> or use can supply the <code>subset</code> argument to <code>lm()</code>. In this case, just supplying <code>subset = dataset == "I"</code> to <code>lm()</code>, for example, is probably easiest. Fit the regression to all four datasets and put the intercept, slope, RMS of the residuals, and number of observations for each regression in a little table. Interpret the results.</li>
 <li>For each of the four regression fits, create a scatterplot of the fitted values versus the residuals. Describe any inadequacies.
@@ -631,12 +878,12 @@ Num. obs.    826
 </ol>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-171" class="exercise"><strong>Exercise 11.5  </strong></span>Use regression to test Clark and Golder’s (2006) theory using the parties dataset. First, create scatterplots between ENEG and ENEP faceted by the electoral system with with the least-squares fit included in each. Then fit three separate regression models. Fit the model <span class="math inline">\(\text{ENEP}_i = \alpha + \beta \text{ENEG}_i + r_i\)</span> for SMD systems, small-magnitude PR systems, and large-magnitude PR systems. (Hint: Use <code>filter()</code> to create three separate data sets–one for each electoral system.)
+<span id="exr:unnamed-chunk-173" class="exercise"><strong>Exercise 11.5  </strong></span>Use regression to test Clark and Golder’s (2006) theory using the parties dataset. First, create scatterplots between ENEG and ENEP faceted by the electoral system with with the least-squares fit included in each. Then fit three separate regression models. Fit the model <span class="math inline">\(\text{ENEP}_i = \alpha + \beta \text{ENEG}_i + r_i\)</span> for SMD systems, small-magnitude PR systems, and large-magnitude PR systems. (Hint: Use <code>filter()</code> to create three separate data sets–one for each electoral system.)
 </div>
 
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-172" class="exercise"><strong>Exercise 11.6  </strong></span>This continues Exercise <a href="#exr:description-review"><strong>??</strong></a>. Get the economic-model CSV dataset <a href="https://github.com/pos5737/economic-models/blob/master/data/economic-models.csv">from GitHub</a>.</p>
+<p><span id="exr:unnamed-chunk-174" class="exercise"><strong>Exercise 11.6  </strong></span>This continues Exercise <a href="#exr:description-review"><strong>??</strong></a>. Get the economic-model CSV dataset <a href="https://github.com/pos5737/economic-models/blob/master/data/economic-models.csv">from GitHub</a>.</p>
 <ol style="list-style-type: decimal">
 <li>In three separate regressions, use GDP, RDI, and unemployment to explain the incumbent’s margin of victory. Which measure of economic performance best describes incumbents’ vote shares? Hint: Maybe the RMS of the residuals will be helpful?</li>
 <li>Using the best model of the three, which incumbents did much better than the model suggests? Which incumbents did much worse? Hint: Maybe make a scatterplot of your prefered variable and the margin of victory and use <code>geom_label()</code> with the aesthetic <code>label = incumbent_name</code>.
